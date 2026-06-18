@@ -266,6 +266,19 @@ function findTeamBracketInfo(teamCode, standings, r32Matches) {
   return null;
 }
 
+function getEliminatedThirdPlaceTeams(standings) {
+  const thirds = getAllThirdPlace(standings);
+  const eliminated = new Set();
+  for (const team of thirds) {
+    const gamesPlayed = team.w + team.d + team.l;
+    const maxPts = team.pts + 3 * (3 - gamesPlayed);
+    // Eliminated if 8+ other 3rd-place teams already have strictly more pts than we can ever reach
+    const ahead = thirds.filter(t => t.code !== team.code && t.pts > maxPts).length;
+    if (ahead >= 8) eliminated.add(team.code);
+  }
+  return eliminated;
+}
+
 function getAllThirdPlace(standings) {
   return Object.entries(standings)
     .filter(([, teams]) => teams.length >= 3)
@@ -319,15 +332,19 @@ function renderGroups(standings) {
     grid.innerHTML = '<div class="loading-msg">No group data available yet.</div>';
     return;
   }
-  grid.innerHTML = groups.map(g => renderGroupCard(g, standings[g])).join('');
+  const eliminatedThirds = getEliminatedThirdPlaceTeams(standings);
+  grid.innerHTML = groups.map(g => renderGroupCard(g, standings[g], eliminatedThirds)).join('');
 }
 
-function renderGroupCard(groupLetter, teams) {
+function renderGroupCard(groupLetter, teams, eliminatedThirds = new Set()) {
   const rows = teams.map((t, i) => {
     const pos = i + 1;
     const gd = t.gf - t.ga;
     const gdStr = gd > 0 ? `+${gd}` : `${gd}`;
-    const posClass = pos <= 2 ? `qualified-${pos}` : pos === 3 ? 'qualified-3' : 'eliminated';
+    const posClass = pos <= 2 ? `qualified-${pos}`
+                   : pos === 3 && eliminatedThirds.has(t.code) ? 'eliminated'
+                   : pos === 3 ? 'qualified-3'
+                   : 'eliminated';
     return `<tr class="${posClass}" data-code="${t.code}">
       <td>
         <div class="team-name">

@@ -1,0 +1,20 @@
+{
+  "_comment": "Knockout rounds R16 through Final. home/away values are 'W-<matchId>' refs. Times are UTC.",
+  "matches": [
+    { "id": "R16-1", "date": "2026-07-04", "time": "21:00", "venue": "Philadelphia",          "home": "W-R32-3",  "away": "W-R32-6"  },
+    { "id": "R16-2", "date": "2026-07-04", "time": "17:00", "venue": "Houston",               "home": "W-R32-1",  "away": "W-R32-4"  },
+    { "id": "R16-3", "date": "2026-07-05", "time": "20:00", "venue": "New York/New Jersey",   "home": "W-R32-2",  "away": "W-R32-5"  },
+    { "id": "R16-4", "date": "2026-07-06", "time": "00:00", "venue": "Mexico City",           "home": "W-R32-7",  "away": "W-R32-8"  },
+    { "id": "R16-5", "date": "2026-07-06", "time": "19:00", "venue": "Dallas",                "home": "W-R32-12", "away": "W-R32-11" },
+    { "id": "R16-6", "date": "2026-07-07", "time": "00:00", "venue": "Seattle",               "home": "W-R32-10", "away": "W-R32-9"  },
+    { "id": "R16-7", "date": "2026-07-07", "time": "16:00", "venue": "Atlanta",               "home": "W-R32-15", "away": "W-R32-14" },
+    { "id": "R16-8", "date": "2026-07-07", "time": "20:00", "venue": "Vancouver",             "home": "W-R32-13", "away": "W-R32-16" },
+    { "id": "QF-1",  "date": "2026-07-09", "time": "20:00", "venue": "Boston",                "home": "W-R16-1",  "away": "W-R16-2"  },
+    { "id": "QF-2",  "date": "2026-07-10", "time": "19:00", "venue": "Los Angeles",           "home": "W-R16-5",  "away": "W-R16-6"  },
+    { "id": "QF-3",  "date": "2026-07-11", "time": "21:00", "venue": "Miami",                 "home": "W-R16-3",  "away": "W-R16-4"  },
+    { "id": "QF-4",  "date": "2026-07-12", "time": "01:00", "venue": "Kansas City",           "home": "W-R16-7",  "away": "W-R16-8"  },
+    { "id": "SF-1",  "date": "2026-07-14", "time": "19:00", "venue": "Dallas",                "home": "W-QF-1",   "away": "W-QF-2"   },
+    { "id": "SF-2",  "date": "2026-07-15", "time": "19:00", "venue": "Atlanta",               "home": "W-QF-3",   "away": "W-QF-4"   },
+    { "id": "F",     "date": "2026-07-19", "time": "19:00", "venue": "New York/New Jersey",   "home": "W-SF-1",   "away": "W-SF-2"   }
+  ]
+}

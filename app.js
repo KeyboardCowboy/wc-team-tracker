@@ -1,0 +1,782 @@
+// ─── Data source ──────────────────────────────────────────────────────────────
+
+const GITHUB_URL = 'https://raw.githubusercontent.com/upbound-web/worldcup-live.json/refs/heads/master/2026/worldcup.json';
+const POLL_INTERVAL = 30 * 60 * 1000;
+
+// ─── Team name → FIFA code ────────────────────────────────────────────────────
+
+const NAME_TO_CODE = {
+  'Mexico': 'MEX', 'South Africa': 'RSA', 'South Korea': 'KOR',
+  'Czech Republic': 'CZE', 'Canada': 'CAN', 'Bosnia & Herzegovina': 'BIH',
+  'Qatar': 'QAT', 'Switzerland': 'SUI', 'Brazil': 'BRA', 'Morocco': 'MAR',
+  'Haiti': 'HAI', 'Scotland': 'SCO', 'USA': 'USA', 'Paraguay': 'PAR',
+  'Australia': 'AUS', 'Turkey': 'TUR', 'Germany': 'GER', 'Curaçao': 'CUW',
+  'Ivory Coast': 'CIV', 'Ecuador': 'ECU', 'Netherlands': 'NED', 'Japan': 'JPN',
+  'Sweden': 'SWE', 'Tunisia': 'TUN', 'Belgium': 'BEL', 'Egypt': 'EGY',
+  'Iran': 'IRN', 'New Zealand': 'NZL', 'Spain': 'ESP', 'Cape Verde': 'CPV',
+  'Saudi Arabia': 'KSA', 'Uruguay': 'URU', 'France': 'FRA', 'Senegal': 'SEN',
+  'Iraq': 'IRQ', 'Norway': 'NOR', 'Argentina': 'ARG', 'Algeria': 'ALG',
+  'Austria': 'AUT', 'Jordan': 'JOR', 'Portugal': 'POR', 'DR Congo': 'COD',
+  'Uzbekistan': 'UZB', 'Colombia': 'COL', 'England': 'ENG', 'Croatia': 'CRO',
+  'Ghana': 'GHA', 'Panama': 'PAN',
+};
+
+function nameToCode(name) {
+  return NAME_TO_CODE[name] ?? name?.slice(0, 3).toUpperCase() ?? '???';
+}
+
+// ─── Openfootball normalisation ───────────────────────────────────────────────
+
+function parseKickoff(date, timeStr) {
+  if (!timeStr) return `${date}T00:00:00Z`;
+  const m = timeStr.match(/^(\d{1,2}):(\d{2})\s+UTC([+-]\d+)?$/);
+  if (!m) return `${date}T00:00:00Z`;
+  const hh = parseInt(m[1], 10);
+  const mm = parseInt(m[2], 10);
+  const offset = m[3] ? parseInt(m[3], 10) : 0;
+  const [y, mo, d] = date.split('-').map(Number);
+  return new Date(Date.UTC(y, mo - 1, d, hh - offset, mm)).toISOString();
+}
+
+function inferStatus(raw) {
+  if (raw.score?.ft) return 'finished';
+  const kickoffMs = new Date(parseKickoff(raw.date, raw.time)).getTime();
+  const now = Date.now();
+  if (isNaN(kickoffMs)) return 'upcoming';
+  if (now >= kickoffMs && now <= kickoffMs + 115 * 60 * 1000) return 'live';
+  return 'upcoming';
+}
+
+function normalizeOpenFootball(raw) {
+  if (!raw.group) return null;
+  const code1 = nameToCode(raw.team1);
+  const code2 = nameToCode(raw.team2);
+  const hasScore = !!raw.score?.ft;
+  const kickoff = parseKickoff(raw.date, raw.time);
+  return {
+    id: `${raw.date}-${code1}-${code2}`,
+    round: raw.round ?? 'group',
+    group: raw.group.replace('Group ', ''),
+    homeTeam: { code: code1, name: raw.team1 },
+    awayTeam: { code: code2, name: raw.team2 },
+    kickoff,
+    venue: raw.ground ?? '',
+    status: inferStatus(raw),
+    score: { home: hasScore ? raw.score.ft[0] : null, away: hasScore ? raw.score.ft[1] : null },
+    events: [],
+  };
+}
+
+// ─── Knockout result parsing ──────────────────────────────────────────────────
+
+const NUM_TO_ID = {
+  73:'R32-1',  74:'R32-3',  75:'R32-4',  76:'R32-2',
+  77:'R32-6',  78:'R32-5',  79:'R32-7',  80:'R32-8',
+  81:'R32-10', 82:'R32-9',  83:'R32-12', 84:'R32-11',
+  85:'R32-13', 86:'R32-15', 87:'R32-16', 88:'R32-14',
+  89:'R16-1',  90:'R16-2',  91:'R16-3',  92:'R16-4',
+  93:'R16-5',  94:'R16-6',  95:'R16-7',  96:'R16-8',
+  97:'QF-1',   98:'QF-2',   99:'QF-3',  100:'QF-4',
+  101:'SF-1', 102:'SF-2',  104:'F',
+};
+
+function isRealTeamName(name) {
+  return !!(name && NAME_TO_CODE[name]);
+}
+
+function buildKnockoutResults(allMatches) {
+  const results = {};
+  for (const raw of allMatches) {
+    if (raw.group) continue;
+    const id = NUM_TO_ID[raw.num];
+    if (!id) continue;
+    const home = isRealTeamName(raw.team1) ? { code: nameToCode(raw.team1), name: raw.team1 } : null;
+    const away = isRealTeamName(raw.team2) ? { code: nameToCode(raw.team2), name: raw.team2 } : null;
+    const hasScore = !!raw.score?.ft;
+    const score = hasScore ? { home: raw.score.ft[0], away: raw.score.ft[1] } : null;
+    let winner = null;
+    if (hasScore && score.home !== score.away) {
+      winner = score.home > score.away ? home : away;
+    }
+    results[id] = { home, away, score, winner, status: inferStatus(raw) };
+  }
+  return results;
+}
+
+// ─── Third-place slot assignment ──────────────────────────────────────────────
+
+const THIRD_PLACE_SLOTS = {
+  '1A': ['C','E','F','H','I'],
+  '1B': ['E','F','G','I','J'],
+  '1D': ['B','E','F','I','J'],
+  '1E': ['A','B','C','D','F'],
+  '1G': ['A','E','H','I','J'],
+  '1I': ['C','D','F','G','H'],
+  '1K': ['D','E','I','J','L'],
+  '1L': ['E','H','I','J','K'],
+};
+
+let KNOWN_COMBINATIONS = {};
+
+async function loadKnownCombinations() {
+  try {
+    const res = await fetch('data/third-place-combinations.json');
+    const data = await res.json();
+    KNOWN_COMBINATIONS = data.combinations ?? {};
+  } catch {
+    console.warn('Could not load third-place combinations table');
+  }
+}
+
+function findAssignmentByMatching(advancingGroups) {
+  const slots = Object.keys(THIRD_PLACE_SLOTS);
+  const groups = [...advancingGroups];
+
+  function eligible(slot, group) {
+    return THIRD_PLACE_SLOTS[slot].includes(group);
+  }
+
+  const matchedGroup = {};
+  const matchedSlot  = {};
+
+  function dfs(slot, visited) {
+    for (const g of groups) {
+      if (!eligible(slot, g) || visited.has(g)) continue;
+      visited.add(g);
+      if (!matchedGroup[g] || dfs(matchedGroup[g], visited)) {
+        matchedGroup[g] = slot;
+        matchedSlot[slot] = g;
+        return true;
+      }
+    }
+    return false;
+  }
+
+  for (const slot of slots) dfs(slot, new Set());
+
+  const result = {};
+  for (const slot of slots) result[slot] = matchedSlot[slot] ?? null;
+  return result;
+}
+
+function resolveThirdPlaceSlots(advancingGroups) {
+  const key = [...advancingGroups].sort().join('');
+  if (KNOWN_COMBINATIONS[key]) {
+    const cols = KNOWN_COMBINATIONS[key];
+    const slots = Object.keys(THIRD_PLACE_SLOTS);
+    const result = {};
+    slots.forEach((s, i) => { result[s] = cols[i]; });
+    return { assignment: result, isExact: true };
+  }
+  return { assignment: findAssignmentByMatching(advancingGroups), isExact: false };
+}
+
+// ─── Standings calculation ────────────────────────────────────────────────────
+
+function calculateGroupStandings(matches) {
+  const groups = {};
+
+  for (const m of matches) {
+    if (!m.group) continue;
+    if (!groups[m.group]) groups[m.group] = {};
+    const g = groups[m.group];
+    for (const side of ['homeTeam', 'awayTeam']) {
+      const t = m[side];
+      if (t?.code && !g[t.code]) {
+        g[t.code] = { code: t.code, name: t.name, group: m.group, w:0, d:0, l:0, gf:0, ga:0, pts:0, fp:0 };
+      }
+    }
+  }
+
+  for (const m of matches) {
+    if (!m.group || m.status === 'upcoming') continue;
+    const g = groups[m.group];
+    if (!g) continue;
+    const { homeTeam, awayTeam, score } = m;
+    if (!homeTeam?.code || !awayTeam?.code) continue;
+    if (score.home === null || score.away === null) continue;
+
+    const h = g[homeTeam.code];
+    const a = g[awayTeam.code];
+    if (!h || !a) continue;
+
+    h.gf += score.home; h.ga += score.away;
+    a.gf += score.away; a.ga += score.home;
+
+    if (score.home > score.away) { h.w++; h.pts += 3; a.l++; }
+    else if (score.home < score.away) { a.w++; a.pts += 3; h.l++; }
+    else { h.d++; h.pts++; a.d++; a.pts++; }
+  }
+
+  const sorted = {};
+  for (const [gLetter, teams] of Object.entries(groups)) {
+    sorted[gLetter] = Object.values(teams).sort((a, b) => {
+      if (b.pts !== a.pts) return b.pts - a.pts;
+      const gdA = a.gf - a.ga, gdB = b.gf - b.ga;
+      if (gdB !== gdA) return gdB - gdA;
+      if (b.gf !== a.gf) return b.gf - a.gf;
+      if (b.fp !== a.fp) return b.fp - a.fp;
+      return a.name.localeCompare(b.name);
+    });
+  }
+  return sorted;
+}
+
+// ─── Team bracket lookup ──────────────────────────────────────────────────────
+
+function findTeamBracketInfo(teamCode, standings, r32Matches) {
+  for (const [group, teams] of Object.entries(standings)) {
+    const idx = teams.findIndex(t => t.code === teamCode);
+    if (idx === -1) continue;
+    const pos = idx + 1;
+    const team = teams[idx];
+
+    if (pos <= 2) {
+      const match = r32Matches.find(m =>
+        (m.home?.pos === pos && m.home?.group === group) ||
+        (m.away?.pos === pos && m.away?.group === group)
+      );
+      return { team, group, pos, match, thirdPlaceInfo: null };
+    }
+
+    if (pos === 3) {
+      const allThirds = getAllThirdPlace(standings);
+      const sorted3rd = rankThirdPlaceTeams(allThirds);
+      const rank = sorted3rd.findIndex(t => t.code === teamCode) + 1;
+      const advances = rank <= 8;
+
+      let match = null;
+      let slotInfo = null;
+      if (advances) {
+        const advancing8 = sorted3rd.slice(0, 8).map(t => t.group);
+        const { assignment, isExact } = resolveThirdPlaceSlots(advancing8);
+        const mySlot = Object.entries(assignment).find(([, g]) => g === group)?.[0];
+        if (mySlot) {
+          match = r32Matches.find(m => m.home?.pos === 1 && m.home?.group === mySlot.slice(1));
+        }
+        slotInfo = { rank, advances, sorted3rd, assignment, isExact, mySlot };
+      } else {
+        slotInfo = { rank, advances, sorted3rd, assignment: null, isExact: true, mySlot: null };
+      }
+      return { team, group, pos, match, thirdPlaceInfo: slotInfo };
+    }
+
+    return { team, group, pos, match: null, thirdPlaceInfo: null };
+  }
+  return null;
+}
+
+function getAllThirdPlace(standings) {
+  return Object.entries(standings)
+    .filter(([, teams]) => teams.length >= 3)
+    .map(([, teams]) => ({ ...teams[2] }));
+}
+
+function rankThirdPlaceTeams(thirds) {
+  return [...thirds].sort((a, b) => {
+    if (b.pts !== a.pts) return b.pts - a.pts;
+    const gdA = a.gf - a.ga, gdB = b.gf - b.ga;
+    if (gdB !== gdA) return gdB - gdA;
+    if (b.gf !== a.gf) return b.gf - a.gf;
+    if (b.fp !== a.fp) return b.fp - a.fp;
+    return a.name.localeCompare(b.name);
+  });
+}
+
+function describeOpponent(slotSide, standings, thirdAssignment) {
+  if (!slotSide) return '?';
+  if (slotSide.pos === 3) {
+    if (!thirdAssignment) return `3rd (${slotSide.slot3rd?.join('/')})`;
+    const assignedGroup = thirdAssignment[`1${slotSide.group ?? ''}`];
+    if (!assignedGroup) return `3rd (${slotSide.slot3rd?.join('/')})`;
+    const team = standings[assignedGroup]?.[2];
+    return team ? `3rd ${assignedGroup}: ${team.name}` : `3rd Group ${assignedGroup}`;
+  }
+  const team = standings[slotSide.group]?.[slotSide.pos - 1];
+  return team ? `${ordinal(slotSide.pos)} ${slotSide.group}: ${team.name}` : `${ordinal(slotSide.pos)} Group ${slotSide.group}`;
+}
+
+function ordinal(n) { return n === 1 ? '1st' : n === 2 ? '2nd' : n === 3 ? '3rd' : `${n}th`; }
+
+// ─── Rendering ────────────────────────────────────────────────────────────────
+
+const FLAG_EMOJI = {
+  USA:'🇺🇸', MEX:'🇲🇽', CAN:'🇨🇦', BRA:'🇧🇷', ARG:'🇦🇷', FRA:'🇫🇷', ENG:'🏴󠁧󠁢󠁥󠁮󠁧󠁿',
+  ESP:'🇪🇸', GER:'🇩🇪', POR:'🇵🇹', NED:'🇳🇱', BEL:'🇧🇪', CRO:'🇭🇷', SUI:'🇨🇭',
+  URU:'🇺🇾', COL:'🇨🇴', ECU:'🇪🇨', PAR:'🇵🇾', PAN:'🇵🇦', JPN:'🇯🇵', KOR:'🇰🇷',
+  AUS:'🇦🇺', IRN:'🇮🇷', KSA:'🇸🇦', QAT:'🇶🇦', MAR:'🇲🇦', SEN:'🇸🇳', EGY:'🇪🇬',
+  GHA:'🇬🇭', CIV:'🇨🇮', TUN:'🇹🇳', TUR:'🇹🇷', AUT:'🇦🇹', SCO:'🏴󠁧󠁢󠁳󠁣󠁴󠁿', NZL:'🇳🇿',
+  RSA:'🇿🇦', CZE:'🇨🇿', BIH:'🇧🇦', HAI:'🇭🇹', CUW:'🇨🇼', SWE:'🇸🇪', CPV:'🇨🇻',
+  IRQ:'🇮🇶', NOR:'🇳🇴', ALG:'🇩🇿', JOR:'🇯🇴', COD:'🇨🇩', UZB:'🇺🇿',
+};
+
+function flag(code) { return FLAG_EMOJI[code] ?? '🏳'; }
+
+function renderGroups(standings) {
+  const grid = document.getElementById('groups-grid');
+  const groups = Object.keys(standings).sort();
+  if (!groups.length) {
+    grid.innerHTML = '<div class="loading-msg">No group data available yet.</div>';
+    return;
+  }
+  grid.innerHTML = groups.map(g => renderGroupCard(g, standings[g])).join('');
+}
+
+function renderGroupCard(groupLetter, teams) {
+  const rows = teams.map((t, i) => {
+    const pos = i + 1;
+    const gd = t.gf - t.ga;
+    const gdStr = gd > 0 ? `+${gd}` : `${gd}`;
+    const posClass = pos <= 2 ? `qualified-${pos}` : pos === 3 ? 'qualified-3' : 'eliminated';
+    return `<tr class="${posClass}">
+      <td>
+        <div class="team-name">
+          <span class="pos-badge pos-${pos}">${pos}</span>
+          <span class="team-flag">${flag(t.code)}</span>
+          <span class="team-abbr">${t.code}</span>
+        </div>
+      </td>
+      <td>${t.w + t.d + t.l}</td>
+      <td>${t.w}</td>
+      <td>${t.d}</td>
+      <td>${t.l}</td>
+      <td>${gd > 0 ? `+${gd}` : `${gd}`}</td>
+      <td class="pts-col">${t.pts}</td>
+    </tr>`;
+  }).join('');
+
+  return `<div class="group-card">
+    <h2>Group ${groupLetter}</h2>
+    <table class="group-table">
+      <thead><tr>
+        <th>Team</th><th>GP</th><th>W</th><th>D</th><th>L</th><th>GD</th><th>Pts</th>
+      </tr></thead>
+      <tbody>${rows}</tbody>
+    </table>
+  </div>`;
+}
+
+function populateTeamDropdown(standings, defaultCode = 'USA') {
+  const sel = document.getElementById('team-select');
+  const groups = Object.keys(standings).sort();
+  sel.innerHTML = '<option value="">— select a team —</option>';
+
+  for (const g of groups) {
+    const opt = document.createElement('optgroup');
+    opt.label = `Group ${g}`;
+    for (const t of standings[g]) {
+      const o = document.createElement('option');
+      o.value = t.code;
+      o.textContent = `${flag(t.code)} ${t.name}`;
+      opt.appendChild(o);
+    }
+    sel.appendChild(opt);
+  }
+
+  if (defaultCode && sel.querySelector(`option[value="${defaultCode}"]`)) {
+    sel.value = defaultCode;
+  }
+}
+
+function renderBracket(teamCode, standings, r32Matches) {
+  const content = document.getElementById('bracket-content');
+  if (!teamCode) {
+    content.innerHTML = '<p class="dim center">Select a team to see their projected Round of 32 matchup.</p>';
+    return;
+  }
+
+  const info = findTeamBracketInfo(teamCode, standings, r32Matches);
+  if (!info) {
+    content.innerHTML = '<p class="dim center">Team not found in current standings.</p>';
+    return;
+  }
+
+  const { team, group, pos, match, thirdPlaceInfo } = info;
+  const gd = team.gf - team.ga;
+  const gdStr = gd > 0 ? `+${gd}` : `${gd}`;
+
+  let html = `<div class="bracket-result">`;
+
+  html += `<div class="team-standing-card">
+    <h2 class="standing-label">Current Standing</h2>
+    <div class="standing-name">${flag(team.code)} ${team.name}</div>
+    <div class="standing-group">${ordinal(pos)} in Group ${group}</div>
+    <div class="standing-stats">
+      <div class="stat"><div class="stat-val">${team.pts}</div><div class="stat-lbl">Pts</div></div>
+      <div class="stat"><div class="stat-val">${team.w}</div><div class="stat-lbl">W</div></div>
+      <div class="stat"><div class="stat-val">${team.d}</div><div class="stat-lbl">D</div></div>
+      <div class="stat"><div class="stat-val">${team.l}</div><div class="stat-lbl">L</div></div>
+      <div class="stat"><div class="stat-val">${gdStr}</div><div class="stat-lbl">GD</div></div>
+      <div class="stat"><div class="stat-val">${team.gf}</div><div class="stat-lbl">GF</div></div>
+    </div>
+  </div>`;
+
+  if (pos === 4) {
+    html += `<div class="r32-match-card third-place-danger">
+      <h3 class="r32-label">Eliminated</h3>
+      <p class="dim">Finishing 4th eliminates a team from the tournament.</p>
+    </div>`;
+  } else if (pos === 3) {
+    const tp = thirdPlaceInfo;
+    html += renderGroupGames(team.code, group);
+    html += renderThirdPlaceSection(team, group, tp, standings);
+    if (tp?.advances && match) {
+      html += `<h2 class="do-you-believe-label">Do You Believe…</h2>`;
+      const path = getTeamPath(match.id);
+      for (const entry of path) html += renderFutureRoundCard(team, entry);
+    }
+  } else {
+    html += renderGroupGames(team.code, group);
+    const allThirds = getAllThirdPlace(standings);
+    const sorted3rd = rankThirdPlaceTeams(allThirds);
+    const advancing8 = sorted3rd.slice(0, 8).map(t => t.group);
+    const { assignment: thirdAssignment, isExact } = resolveThirdPlaceSlots(advancing8);
+    html += renderR32Card(team, group, pos, match, standings, thirdAssignment, isExact);
+    html += `<h2 class="do-you-believe-label">Do You Believe…</h2>`;
+    const path = getTeamPath(match.id);
+    for (const entry of path) html += renderFutureRoundCard(team, entry);
+  }
+
+  html += `</div>`;
+  content.innerHTML = html;
+}
+
+function renderR32Card(team, group, pos, match, standings, thirdAssignment, isExact) {
+  if (!match) {
+    return `<div class="r32-feature-card">
+      <div class="r32-feature-top"><span class="r32-round-tag">Round of 32</span></div>
+      <div class="r32-feature-body"><p class="dim">Bracket assignment not yet determined.</p></div>
+    </div>`;
+  }
+
+  const isHome = match.home?.pos === pos && match.home?.group === group;
+  const opponentSide = isHome ? match.away : match.home;
+
+  const kickoff = new Date(`${match.date}T${match.time}:00Z`);
+  const localDate = kickoff.toLocaleDateString('en-US', { weekday: 'short', month: 'long', day: 'numeric' });
+  const localTime = kickoff.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit', timeZoneName: 'short' });
+
+  let oppHtml;
+  if (opponentSide?.pos === 3) {
+    const slotKey = `1${match.home?.group}`;
+    const assignedGroup = thirdAssignment?.[slotKey];
+    const eligibleGroups = opponentSide.slot3rd ?? [];
+
+    const rows = eligibleGroups.map(g => {
+      const t = standings[g]?.[2];
+      if (!t) return '';
+      const gd = t.gf - t.ga;
+      const gdStr = gd > 0 ? `+${gd}` : String(gd);
+      const projected = g === assignedGroup;
+      return `<tr class="${projected ? 'opp-projected' : 'opp-other'}">
+        <td class="opp-arrow">${projected ? '▶' : ''}</td>
+        <td>${flag(t.code)} ${t.name}</td>
+        <td class="opp-meta">Grp ${g}</td>
+        <td class="opp-meta">${t.pts}pts</td>
+        <td class="opp-meta">${gdStr}</td>
+      </tr>`;
+    }).join('');
+
+    oppHtml = `<div class="r32-opp-title">Best 3rd — ${eligibleGroups.join(' / ')}</div>
+      <table class="opp-candidates">${rows}</table>
+      ${!isExact ? '<div class="info-note" style="margin-top:6px">⚠ Slot estimated via matching algorithm.</div>' : ''}`;
+  } else if (opponentSide) {
+    const t = standings[opponentSide.group]?.[opponentSide.pos - 1];
+    const gd = t ? t.gf - t.ga : 0;
+    const gdStr = gd > 0 ? `+${gd}` : String(gd);
+    oppHtml = t
+      ? `<div class="r32-opp-name">${flag(t.code)} ${t.name}</div>
+         <div class="r32-opp-sub">${ordinal(opponentSide.pos)}, Group ${opponentSide.group} · ${t.pts}pts ${gdStr}</div>`
+      : `<div class="r32-opp-name dim">${ordinal(opponentSide.pos)}, Group ${opponentSide.group}</div>`;
+  } else {
+    oppHtml = '<div class="r32-opp-name dim">TBD</div>';
+  }
+
+  return `<div class="r32-feature-card">
+    <div class="r32-feature-top">
+      <span class="r32-round-tag">Round of 32</span>
+      <span class="r32-kickoff-tag">${localDate} · ${localTime}</span>
+    </div>
+    <div class="r32-feature-body">
+      <div class="r32-my-team">
+        <div class="r32-my-flag">${flag(team.code)}</div>
+        <div class="r32-my-name">${team.name}</div>
+      </div>
+      <div class="r32-vs-col">vs</div>
+      <div class="r32-opp-col">${oppHtml}</div>
+    </div>
+    <div class="r32-feature-foot dim">${match.id}</div>
+  </div>`;
+}
+
+function renderThirdPlaceSection(team, group, tp, standings) {
+  if (!tp) return '';
+
+  const { rank, advances, sorted3rd, assignment, isExact, mySlot } = tp;
+
+  let statusCard = '';
+  if (advances) {
+    const winnerGroup = mySlot?.slice(1);
+    const leader = winnerGroup ? standings[winnerGroup]?.[0] : null;
+    const opponentDesc = leader
+      ? `${flag(leader.code)} ${leader.name} <span class="dim">(1st Group ${winnerGroup})</span>`
+      : winnerGroup ? `Group ${winnerGroup} winner` : 'Bracket slot pending';
+
+    statusCard = `<div class="r32-match-card third-place-qualifier">
+      <h3 class="r32-label">Round of 32 — Qualified as 3rd-place</h3>
+      <div class="r32-matchup">
+        <div class="r32-team highlight">${flag(team.code)} ${team.name}</div>
+        <div class="r32-vs">vs</div>
+        <div class="r32-team">${opponentDesc}</div>
+      </div>
+      ${!isExact ? '<div class="info-note">⚠ Bracket slot computed via matching algorithm. Result may differ.</div>' : ''}
+    </div>`;
+  } else {
+    statusCard = `<div class="r32-match-card third-place-danger">
+      <h3 class="r32-label">Eliminated — 3rd place (rank ${rank}/12)</h3>
+      <p class="dim" style="margin-top:6px">Currently ranked outside the top 8 third-place teams.</p>
+    </div>`;
+  }
+
+  const rows = sorted3rd.map((t, i) => {
+    const r = i + 1;
+    const gd = t.gf - t.ga;
+    const gdStr = gd > 0 ? `+${gd}` : `${gd}`;
+    const isSelected = t.code === team.code;
+    const advancing = r <= 8;
+    return `<tr class="${advancing ? 'advancing' : ''} ${isSelected ? 'selected-team' : ''}">
+      <td class="rank-num">${r}</td>
+      <td><span class="team-flag">${flag(t.code)}</span> ${t.code} <span class="dim">(${t.group})</span></td>
+      <td>${t.pts}</td>
+      <td>${gdStr}</td>
+      <td>${t.gf}</td>
+    </tr>`;
+  }).join('');
+
+  const rankingCard = `<div class="r32-match-card">
+    <h3 class="r32-label">All 3rd-Place Teams Ranked</h3>
+    <table class="third-rank-table">
+      <thead><tr><th>#</th><th>Team</th><th>Pts</th><th>GD</th><th>GF</th></tr></thead>
+      <tbody>${rows}</tbody>
+    </table>
+    <div class="info-note">Top 8 advance (green rows). Ranked by Pts → GD → GF → Fair Play.</div>
+  </div>`;
+
+  return statusCard + rankingCard;
+}
+
+// ─── Bracket path (R16 → QF → SF → Final) ────────────────────────────────────
+
+let bracketMatches = [];
+let knockoutResults = {};
+
+async function loadBracketMatches() {
+  try {
+    const res = await fetch('data/bracket.json');
+    const data = await res.json();
+    bracketMatches = data.matches ?? [];
+  } catch {
+    console.warn('Could not load bracket.json');
+  }
+}
+
+function getTeamPath(startMatchId) {
+  const path = [];
+  let currentId = startMatchId;
+  for (let i = 0; i < 4; i++) {
+    const next = bracketMatches.find(m => m.home === `W-${currentId}` || m.away === `W-${currentId}`);
+    if (!next) break;
+    const teamSide = next.home === `W-${currentId}` ? 'home' : 'away';
+    const oppRef   = teamSide === 'home' ? next.away : next.home;
+    path.push({ match: next, teamSide, oppRef });
+    currentId = next.id;
+  }
+  return path;
+}
+
+function roundLabel(id) {
+  if (id.startsWith('R16')) return 'Round of 16';
+  if (id.startsWith('QF'))  return 'Quarterfinal';
+  if (id.startsWith('SF'))  return 'Semifinal';
+  if (id === 'F')            return 'Final';
+  return id;
+}
+
+function describeOppRef(oppRef) {
+  const srcId = oppRef.replace(/^W-/, '');
+  const result = knockoutResults[srcId];
+
+  if (result?.winner) return `${flag(result.winner.code)} ${result.winner.name}`;
+
+  if (result?.home && result?.away) {
+    return `Winner of: ${flag(result.home.code)} ${result.home.name} vs ${flag(result.away.code)} ${result.away.name}`;
+  }
+
+  const r32 = r32Matches.find(m => m.id === srcId);
+  if (r32) {
+    const side = s => {
+      if (!s) return '?';
+      if (s.pos <= 2) return `${ordinal(s.pos)} Grp ${s.group}`;
+      if (s.slot3rd)  return `3rd ${s.slot3rd.join('/')}`;
+      return '?';
+    };
+    return `Winner of ${srcId}: ${side(r32.home)} vs ${side(r32.away)}`;
+  }
+
+  return `Winner of ${srcId}`;
+}
+
+function renderFutureRoundCard(team, pathEntry) {
+  const { match, oppRef } = pathEntry;
+  const kickoff   = new Date(`${match.date}T${match.time}:00Z`);
+  const localDate = kickoff.toLocaleDateString('en-US', { weekday: 'short', month: 'long', day: 'numeric' });
+  const localTime = kickoff.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit', timeZoneName: 'short' });
+  const oppDesc   = describeOppRef(oppRef);
+
+  return `<div class="future-round-card">
+    <div class="future-round-top">
+      <span class="future-round-tag">${roundLabel(match.id)}</span>
+      <span class="future-round-kickoff">${localDate} · ${localTime}</span>
+    </div>
+    <div class="future-round-body">
+      <span class="future-team">${flag(team.code)} ${team.name}</span>
+      <span class="future-vs">vs</span>
+      <span class="future-opp dim">${oppDesc}</span>
+    </div>
+    <div class="future-round-foot dim">${match.venue} · ${match.id}</div>
+  </div>`;
+}
+
+// ─── Group game cards ─────────────────────────────────────────────────────────
+
+function renderGroupGames(teamCode, group) {
+  const games = currentMatches
+    .filter(m => m.group === group &&
+      (m.homeTeam.code === teamCode || m.awayTeam.code === teamCode))
+    .sort((a, b) => new Date(a.kickoff) - new Date(b.kickoff));
+
+  const cards = games.map(m => {
+    const isHome  = m.homeTeam.code === teamCode;
+    const opp     = isHome ? m.awayTeam : m.homeTeam;
+    const mySc    = isHome ? m.score.home : m.score.away;
+    const oppSc   = isHome ? m.score.away : m.score.home;
+    const kickoff = new Date(m.kickoff);
+    const dateStr = kickoff.toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric' });
+    const timeStr = kickoff.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit', timeZoneName: 'short' });
+
+    if (m.status === 'finished') {
+      const r = mySc > oppSc ? 'W' : mySc < oppSc ? 'L' : 'D';
+      return `<div class="gg-card gg-${r.toLowerCase()}">
+        <div class="gg-date">${dateStr}</div>
+        <div class="gg-opp">${flag(opp.code)} ${opp.code}</div>
+        <div class="gg-score">${mySc}–${oppSc}</div>
+        <div class="gg-badge gg-badge-${r.toLowerCase()}">${r}</div>
+      </div>`;
+    }
+
+    if (m.status === 'live') {
+      const sc = mySc !== null ? `${mySc}–${oppSc}` : '';
+      return `<div class="gg-card gg-live">
+        <div class="gg-date">${dateStr}</div>
+        <div class="gg-opp">${flag(opp.code)} ${opp.code}</div>
+        <div class="gg-score">${sc}</div>
+        <div class="gg-badge gg-badge-live">● LIVE</div>
+      </div>`;
+    }
+
+    return `<div class="gg-card">
+      <div class="gg-date">${dateStr}</div>
+      <div class="gg-opp">${flag(opp.code)} ${opp.code}</div>
+      <div class="gg-time dim">${timeStr}</div>
+    </div>`;
+  });
+
+  while (cards.length < 3) cards.push(`<div class="gg-card gg-tbd"><span class="dim">TBD</span></div>`);
+  return `<div class="group-games-row">${cards.slice(0, 3).join('')}</div>`;
+}
+
+// ─── Status bar ───────────────────────────────────────────────────────────────
+
+let lastFetched = null;
+let nextFetch   = null;
+
+function updateStatusBar() {
+  const txt   = document.getElementById('status-text');
+  const badge = document.getElementById('live-badge');
+
+  const age    = lastFetched ? Math.round((Date.now() - lastFetched) / 1000) : null;
+  const ageStr = age !== null ? (age < 60 ? `${age}s ago` : `${Math.round(age / 60)}m ago`) : 'Loading…';
+  const nextIn = nextFetch ? Math.max(0, Math.round((nextFetch - Date.now()) / 1000)) : null;
+  const nextStr = nextIn !== null ? (nextIn < 60 ? `${nextIn}s` : `${Math.round(nextIn / 60)}m`) : '?';
+
+  txt.textContent = `Updated ${ageStr} · Next poll in ${nextStr} · openfootball`;
+
+  const hasLive = currentMatches.some(m => m.status === 'live');
+  badge.classList.toggle('hidden', !hasLive);
+}
+
+// ─── Main ─────────────────────────────────────────────────────────────────────
+
+let r32Matches     = [];
+let currentMatches = [];
+let currentStandings = {};
+let refreshTimer   = null;
+
+async function loadR32Bracket() {
+  try {
+    const res = await fetch('data/r32-bracket.json');
+    const data = await res.json();
+    r32Matches = data.matches ?? [];
+  } catch {
+    console.warn('Could not load R32 bracket data');
+  }
+}
+
+async function fetchAndRender() {
+  if (refreshTimer) clearTimeout(refreshTimer);
+
+  try {
+    const res  = await fetch(GITHUB_URL);
+    const data = await res.json();
+    const all  = data.matches ?? [];
+
+    knockoutResults  = buildKnockoutResults(all);
+    currentMatches   = all.map(normalizeOpenFootball).filter(Boolean);
+    lastFetched      = Date.now();
+    nextFetch        = lastFetched + POLL_INTERVAL;
+
+    const standings  = calculateGroupStandings(currentMatches);
+    currentStandings = standings;
+
+    renderGroups(standings);
+    updateStatusBar();
+
+    const sel  = document.getElementById('team-select');
+    const prev = sel.value;
+    populateTeamDropdown(standings, prev || 'USA');
+
+    const selected = sel.value;
+    if (selected) renderBracket(selected, standings, r32Matches);
+
+  } catch (err) {
+    console.error('Fetch error:', err);
+    document.getElementById('status-text').textContent = 'Error fetching data — retrying in 60s';
+  }
+
+  refreshTimer = setTimeout(fetchAndRender, POLL_INTERVAL);
+}
+
+async function init() {
+  await Promise.all([loadR32Bracket(), loadBracketMatches(), loadKnownCombinations()]);
+  await fetchAndRender();
+
+  document.getElementById('team-select').addEventListener('change', e => {
+    renderBracket(e.target.value, currentStandings, r32Matches);
+  });
+
+  document.getElementById('refresh-btn').addEventListener('click', () => {
+    fetchAndRender();
+  });
+}
+
+init();

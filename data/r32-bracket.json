@@ -1,0 +1,31 @@
+{
+  "_comment": "Round of 32 fixtures. slot3rd lists groups whose 3rd-place team can fill this match.",
+  "matches": [
+    { "id": "R32-1",  "date": "2026-06-28", "time": "19:00", "home": {"pos": 2, "group": "A"}, "away": {"pos": 2, "group": "B"} },
+    { "id": "R32-2",  "date": "2026-06-29", "time": "17:00", "home": {"pos": 1, "group": "C"}, "away": {"pos": 2, "group": "F"} },
+    { "id": "R32-3",  "date": "2026-06-29", "time": "20:30", "home": {"pos": 1, "group": "E"}, "away": {"pos": 3, "slot3rd": ["A","B","C","D","F"]} },
+    { "id": "R32-4",  "date": "2026-06-30", "time": "01:00", "home": {"pos": 1, "group": "F"}, "away": {"pos": 2, "group": "C"} },
+    { "id": "R32-5",  "date": "2026-06-30", "time": "17:00", "home": {"pos": 2, "group": "E"}, "away": {"pos": 2, "group": "I"} },
+    { "id": "R32-6",  "date": "2026-06-30", "time": "21:00", "home": {"pos": 1, "group": "I"}, "away": {"pos": 3, "slot3rd": ["C","D","F","G","H"]} },
+    { "id": "R32-7",  "date": "2026-07-01", "time": "01:00", "home": {"pos": 1, "group": "A"}, "away": {"pos": 3, "slot3rd": ["C","E","F","H","I"]} },
+    { "id": "R32-8",  "date": "2026-07-01", "time": "16:00", "home": {"pos": 1, "group": "L"}, "away": {"pos": 3, "slot3rd": ["E","H","I","J","K"]} },
+    { "id": "R32-9",  "date": "2026-07-01", "time": "20:00", "home": {"pos": 1, "group": "G"}, "away": {"pos": 3, "slot3rd": ["A","E","H","I","J"]} },
+    { "id": "R32-10", "date": "2026-07-02", "time": "00:00", "home": {"pos": 1, "group": "D"}, "away": {"pos": 3, "slot3rd": ["B","E","F","I","J"]} },
+    { "id": "R32-11", "date": "2026-07-02", "time": "19:00", "home": {"pos": 1, "group": "H"}, "away": {"pos": 2, "group": "J"} },
+    { "id": "R32-12", "date": "2026-07-02", "time": "23:00", "home": {"pos": 2, "group": "K"}, "away": {"pos": 2, "group": "L"} },
+    { "id": "R32-13", "date": "2026-07-03", "time": "03:00", "home": {"pos": 1, "group": "B"}, "away": {"pos": 3, "slot3rd": ["E","F","G","I","J"]} },
+    { "id": "R32-14", "date": "2026-07-03", "time": "18:00", "home": {"pos": 2, "group": "D"}, "away": {"pos": 2, "group": "G"} },
+    { "id": "R32-15", "date": "2026-07-03", "time": "22:00", "home": {"pos": 1, "group": "J"}, "away": {"pos": 2, "group": "H"} },
+    { "id": "R32-16", "date": "2026-07-04", "time": "01:30", "home": {"pos": 1, "group": "K"}, "away": {"pos": 3, "slot3rd": ["D","E","I","J","L"]} }
+  ],
+  "thirdPlaceSlots": {
+    "1A": ["C","E","F","H","I"],
+    "1B": ["E","F","G","I","J"],
+    "1D": ["B","E","F","I","J"],
+    "1E": ["A","B","C","D","F"],
+    "1G": ["A","E","H","I","J"],
+    "1I": ["C","D","F","G","H"],
+    "1K": ["D","E","I","J","L"],
+    "1L": ["E","H","I","J","K"]
+  }
+}

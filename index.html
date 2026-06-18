@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WC 2026 Team Tracker</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <div class="header-inner">
+      <h1>⚽ WC 2026 <span class="dim">Team Tracker</span></h1>
+      <div class="status-bar">
+        <span id="live-badge" class="badge badge-live hidden">● LIVE</span>
+        <span id="status-text" class="dim">Loading…</span>
+        <button id="refresh-btn" title="Force refresh">↺</button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- LEFT: Group tables -->
+    <section id="groups-panel">
+      <div id="groups-grid">
+        <!-- Populated by app.js -->
+        <div class="loading-msg">Loading group standings…</div>
+      </div>
+    </section>
+
+    <!-- RIGHT: Bracket preview -->
+    <section id="bracket-panel">
+      <div class="bracket-header">
+        <label for="team-select">Team</label>
+        <select id="team-select">
+          <option value="">— select a team —</option>
+        </select>
+      </div>
+      <div id="bracket-content">
+        <p class="dim center">Select a team to see their projected Round of 32 matchup.</p>
+      </div>
+    </section>
+  </main>
+
+  <script type="module" src="app.js"></script>
+</body>
+</html>

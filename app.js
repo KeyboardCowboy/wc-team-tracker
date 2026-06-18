@@ -431,6 +431,7 @@ function renderBracket(teamCode, standings, r32Matches) {
     const sorted3rd = rankThirdPlaceTeams(allThirds);
     const advancing8 = sorted3rd.slice(0, 8).map(t => t.group);
     const { assignment: thirdAssignment, isExact } = resolveThirdPlaceSlots(advancing8);
+    html += `<h2 class="as-it-stands-label">As It Stands… <span class="section-sub">If the group stage ended right now, this is where ${team.name} would be in the knockout round.</span></h2>`;
     html += renderR32Card(team, group, pos, match, standings, thirdAssignment, isExact);
     html += `<h2 class="do-you-believe-label">Do You Believe…</h2>`;
     const path = getTeamPath(match.id);
@@ -523,7 +524,8 @@ function renderThirdPlaceSection(team, group, tp, standings) {
       ? `${flag(leader.code)} ${leader.name} <span class="dim">(1st Group ${winnerGroup})</span>`
       : winnerGroup ? `Group ${winnerGroup} winner` : 'Bracket slot pending';
 
-    statusCard = `<div class="r32-match-card third-place-qualifier">
+    statusCard = `<h2 class="as-it-stands-label">As It Stands… <span class="section-sub">If the group stage ended right now, this is where ${team.name} would be in the knockout round.</span></h2>
+    <div class="r32-match-card third-place-qualifier">
       <h3 class="r32-label">Round of 32 — Qualified as 3rd-place</h3>
       <div class="r32-matchup">
         <div class="r32-team highlight">${flag(team.code)} ${team.name}</div>

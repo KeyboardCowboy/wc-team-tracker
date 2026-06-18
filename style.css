@@ -134,10 +134,16 @@ main {
 }
 .group-table td:first-child { text-align: left; }
 .group-table tr.highlight { background: rgba(240,180,41,0.06); }
+.group-table tr.selected-team-row td { background: rgba(255,255,255,0.055); }
 .group-table tr.qualified-1 td:first-child { border-left: 3px solid var(--green); }
 .group-table tr.qualified-2 td:first-child { border-left: 3px solid var(--blue); }
 .group-table tr.qualified-3 td:first-child { border-left: 3px solid var(--gold); }
 .group-table tr.eliminated td { opacity: 0.45; }
+
+.group-card.selected-group {
+  border-color: var(--gold);
+  box-shadow: 0 0 0 1px var(--gold);
+}
 
 .team-name {
   display: flex;

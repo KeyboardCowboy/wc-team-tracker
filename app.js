@@ -328,7 +328,7 @@ function renderGroupCard(groupLetter, teams) {
     const gd = t.gf - t.ga;
     const gdStr = gd > 0 ? `+${gd}` : `${gd}`;
     const posClass = pos <= 2 ? `qualified-${pos}` : pos === 3 ? 'qualified-3' : 'eliminated';
-    return `<tr class="${posClass}">
+    return `<tr class="${posClass}" data-code="${t.code}">
       <td>
         <div class="team-name">
           <span class="pos-badge pos-${pos}">${pos}</span>
@@ -345,7 +345,7 @@ function renderGroupCard(groupLetter, teams) {
     </tr>`;
   }).join('');
 
-  return `<div class="group-card">
+  return `<div class="group-card" id="group-card-${groupLetter}">
     <h2>Group ${groupLetter}</h2>
     <table class="group-table">
       <thead><tr>
@@ -439,6 +439,7 @@ function renderBracket(teamCode, standings, r32Matches) {
 
   html += `</div>`;
   content.innerHTML = html;
+  highlightTeam(teamCode);
 }
 
 function renderR32Card(team, group, pos, match, standings, thirdAssignment, isExact) {
@@ -693,6 +694,21 @@ function renderGroupGames(teamCode, group) {
 
   while (cards.length < 3) cards.push(`<div class="gg-card gg-tbd"><span class="dim">TBD</span></div>`);
   return `<div class="group-games-row">${cards.slice(0, 3).join('')}</div>`;
+}
+
+// ─── Group highlight ──────────────────────────────────────────────────────────
+
+function highlightTeam(teamCode) {
+  document.querySelectorAll('.group-card.selected-group').forEach(el => el.classList.remove('selected-group'));
+  document.querySelectorAll('.group-table tr.selected-team-row').forEach(el => el.classList.remove('selected-team-row'));
+  if (!teamCode) return;
+  for (const [group, teams] of Object.entries(currentStandings)) {
+    if (!teams.some(t => t.code === teamCode)) continue;
+    const card = document.getElementById(`group-card-${group}`);
+    card?.classList.add('selected-group');
+    card?.querySelector(`tr[data-code="${teamCode}"]`)?.classList.add('selected-team-row');
+    break;
+  }
 }
 
 // ─── Status bar ───────────────────────────────────────────────────────────────

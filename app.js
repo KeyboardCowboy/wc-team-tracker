@@ -268,15 +268,9 @@ function findTeamBracketInfo(teamCode, standings, r32Matches) {
 
 function getEliminatedThirdPlaceTeams(standings) {
   const thirds = getAllThirdPlace(standings);
-  const eliminated = new Set();
-  for (const team of thirds) {
-    const gamesPlayed = team.w + team.d + team.l;
-    const maxPts = team.pts + 3 * (3 - gamesPlayed);
-    // Eliminated if 8+ other 3rd-place teams already have strictly more pts than we can ever reach
-    const ahead = thirds.filter(t => t.code !== team.code && t.pts > maxPts).length;
-    if (ahead >= 8) eliminated.add(team.code);
-  }
-  return eliminated;
+  const ranked = rankThirdPlaceTeams(thirds);
+  // Bottom 4 of the 12 third-place teams are not currently in the advancing 8
+  return new Set(ranked.slice(8).map(t => t.code));
 }
 
 function getAllThirdPlace(standings) {

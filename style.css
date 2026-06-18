@@ -133,6 +133,8 @@ main {
   border-top: 1px solid var(--border);
 }
 .group-table td:first-child { text-align: left; }
+.group-table tbody tr { cursor: pointer; }
+.group-table tbody tr:hover td { background: rgba(255,255,255,0.03); }
 .group-table tr.highlight { background: rgba(240,180,41,0.06); }
 .group-table tr.selected-team-row td { background: rgba(255,255,255,0.055); }
 .group-table tr.qualified-1 td:first-child { border-left: 3px solid var(--green); }

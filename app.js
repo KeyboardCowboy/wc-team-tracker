@@ -790,6 +790,16 @@ async function init() {
     renderBracket(e.target.value, currentStandings, r32Matches);
   });
 
+  document.getElementById('groups-grid').addEventListener('click', e => {
+    const row = e.target.closest('tr[data-code]');
+    if (!row) return;
+    const code = row.dataset.code;
+    const sel = document.getElementById('team-select');
+    if (sel.value === code) return;
+    sel.value = code;
+    renderBracket(code, currentStandings, r32Matches);
+  });
+
   document.getElementById('refresh-btn').addEventListener('click', () => {
     fetchAndRender();
   });

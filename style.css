@@ -133,11 +133,19 @@ main {
   border-top: 1px solid var(--border);
 }
 .group-table td:first-child { text-align: left; }
+.group-table tbody tr { cursor: pointer; }
+.group-table tbody tr:hover td { background: rgba(255,255,255,0.03); }
 .group-table tr.highlight { background: rgba(240,180,41,0.06); }
+.group-table tr.selected-team-row td { background: rgba(255,255,255,0.055); }
 .group-table tr.qualified-1 td:first-child { border-left: 3px solid var(--green); }
 .group-table tr.qualified-2 td:first-child { border-left: 3px solid var(--blue); }
 .group-table tr.qualified-3 td:first-child { border-left: 3px solid var(--gold); }
 .group-table tr.eliminated td { opacity: 0.45; }
+
+.group-card.selected-group {
+  border-color: var(--gold);
+  box-shadow: 0 0 0 1px var(--gold);
+}
 
 .team-name {
   display: flex;
@@ -397,6 +405,25 @@ main {
 
 .gg-tbd { justify-content: center; opacity: 0.4; }
 
+/* ── Section labels ──────────────────────────────────────────── */
+.as-it-stands-label {
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: var(--blue);
+  padding: 6px 2px 2px;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.section-sub {
+  font-size: 11px;
+  font-weight: 400;
+  letter-spacing: 0;
+  color: var(--dim);
+}
+
 /* ── Do You Believe section label ───────────────────────────── */
 .do-you-believe-label {
   font-size: 15px;
@@ -499,6 +526,80 @@ main {
 .third-rank-table tr.advancing { background: rgba(52,211,153,0.05); }
 .third-rank-table tr.selected-team td { font-weight: 700; color: var(--gold); }
 .rank-num { color: var(--dim); font-size: 11px; width: 20px; }
+
+/* ── 3rd Place Panel ─────────────────────────────────────────────────────── */
+#thirds-panel {
+  padding: 12px 12px 0;
+}
+
+.thirds-panel-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  overflow: hidden;
+  margin-bottom: 12px;
+}
+
+.thirds-panel-title {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--gold);
+  padding: 6px 10px;
+  background: rgba(255,255,255,0.04);
+  border-bottom: 1px solid var(--border);
+}
+
+.thirds-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.thirds-table th {
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--dim);
+  text-transform: uppercase;
+  padding: 4px 8px;
+  text-align: right;
+}
+.thirds-table th:nth-child(1),
+.thirds-table th:nth-child(2) { text-align: left; }
+
+.thirds-table td {
+  padding: 5px 8px;
+  text-align: right;
+  border-top: 1px solid var(--border);
+  font-size: 12px;
+}
+.thirds-table td:nth-child(1),
+.thirds-table td:nth-child(2) { text-align: left; }
+
+.thirds-table tr:hover td { background: rgba(255,255,255,0.03); }
+
+.tp-rank { color: var(--dim); font-size: 11px; width: 24px; }
+.tp-team { white-space: nowrap; }
+.tp-fp-zero { color: var(--dim); }
+.tp-fp-negative { color: #f87171; }
+
+.tp-advancing td { }
+.tp-out td { opacity: 0.45; }
+
+.tp-cutline td { border-top: 2px solid var(--border); }
+
+.tp-adv-badge {
+  font-size: 10px;
+  font-weight: 700;
+  padding: 1px 6px;
+  border-radius: 4px;
+  background: rgba(52,211,153,0.15);
+  color: var(--green);
+  letter-spacing: 0.04em;
+}
+.tp-out-badge {
+  font-size: 10px;
+  color: var(--dim);
+}
 
 /* ── Utilities ───────────────────────────────────────────────────────────── */
 .dim { color: var(--dim); }

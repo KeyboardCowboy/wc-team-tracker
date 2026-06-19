@@ -5,12 +5,87 @@
   "teamTotals": {
     "RSA": {
       "yellow": 4,
+      "red": 2,
+      "yellow_red": 0
+    },
+    "MEX": {
+      "yellow": 0,
       "red": 1,
       "yellow_red": 0
     },
-    "QAT": {
+    "CAN": {
+      "yellow": 3,
+      "red": 0,
+      "yellow_red": 0
+    },
+    "BEL": {
       "yellow": 2,
-      "red": 2,
+      "red": 0,
+      "yellow_red": 0
+    },
+    "PAR": {
+      "yellow": 5,
+      "red": 0,
+      "yellow_red": 0
+    },
+    "NED": {
+      "yellow": 3,
+      "red": 0,
+      "yellow_red": 0
+    },
+    "TUN": {
+      "yellow": 1,
+      "red": 0,
+      "yellow_red": 0
+    },
+    "SCO": {
+      "yellow": 3,
+      "red": 0,
+      "yellow_red": 0
+    },
+    "QAT": {
+      "yellow": 3,
+      "red": 0,
+      "yellow_red": 0
+    },
+    "COL": {
+      "yellow": 1,
+      "red": 0,
+      "yellow_red": 0
+    },
+    "CIV": {
+      "yellow": 3,
+      "red": 0,
+      "yellow_red": 0
+    },
+    "KOR": {
+      "yellow": 3,
+      "red": 0,
+      "yellow_red": 0
+    },
+    "TUR": {
+      "yellow": 1,
+      "red": 0,
+      "yellow_red": 0
+    },
+    "GHA": {
+      "yellow": 1,
+      "red": 0,
+      "yellow_red": 0
+    },
+    "BIH": {
+      "yellow": 4,
+      "red": 0,
+      "yellow_red": 0
+    },
+    "IRQ": {
+      "yellow": 1,
+      "red": 0,
+      "yellow_red": 0
+    },
+    "PAN": {
+      "yellow": 1,
+      "red": 0,
       "yellow_red": 0
     },
     "USA": {
@@ -23,18 +98,8 @@
       "red": 0,
       "yellow_red": 0
     },
-    "SCO": {
-      "yellow": 3,
-      "red": 0,
-      "yellow_red": 0
-    },
     "UZB": {
       "yellow": 1,
-      "red": 0,
-      "yellow_red": 0
-    },
-    "KOR": {
-      "yellow": 3,
       "red": 0,
       "yellow_red": 0
     },
@@ -53,11 +118,6 @@
       "red": 0,
       "yellow_red": 0
     },
-    "PAR": {
-      "yellow": 5,
-      "red": 0,
-      "yellow_red": 0
-    },
     "IRN": {
       "yellow": 1,
       "red": 0,
@@ -68,28 +128,13 @@
       "red": 0,
       "yellow_red": 0
     },
-    "BIH": {
-      "yellow": 4,
-      "red": 0,
-      "yellow_red": 0
-    },
-    "CAN": {
-      "yellow": 3,
-      "red": 0,
-      "yellow_red": 0
-    },
-    "CIV": {
-      "yellow": 3,
-      "red": 0,
-      "yellow_red": 0
-    },
     "ESP": {
       "yellow": 1,
       "red": 0,
       "yellow_red": 0
     },
     "EGY": {
-      "yellow": 2,
+      "yellow": 1,
       "red": 0,
       "yellow_red": 0
     },
@@ -98,52 +143,7 @@
       "red": 0,
       "yellow_red": 0
     },
-    "NED": {
-      "yellow": 2,
-      "red": 0,
-      "yellow_red": 0
-    },
-    "BEL": {
-      "yellow": 2,
-      "red": 0,
-      "yellow_red": 0
-    },
     "ECU": {
-      "yellow": 1,
-      "red": 0,
-      "yellow_red": 0
-    },
-    "PAN": {
-      "yellow": 1,
-      "red": 0,
-      "yellow_red": 0
-    },
-    "CPV": {
-      "yellow": 1,
-      "red": 0,
-      "yellow_red": 0
-    },
-    "MEX": {
-      "yellow": 1,
-      "red": 0,
-      "yellow_red": 0
-    },
-    "CZE": {
-      "yellow": 1,
-      "red": 0,
-      "yellow_red": 0
-    },
-    "AUT": {
-      "yellow": 1,
-      "red": 0,
-      "yellow_red": 0
-    },
-    "TUN": {
-      "yellow": 1,
-      "red": 0,
-      "yellow_red": 0
-    },
-    "COL": {
       "yellow": 1,
       "red": 0,
       "yellow_red": 0

@@ -13,46 +13,6 @@
       "red": 2,
       "yellow_red": 0
     },
-    "BRA": {
-      "yellow": 2,
-      "red": 0,
-      "yellow_red": 0
-    },
-    "SCO": {
-      "yellow": 3,
-      "red": 0,
-      "yellow_red": 0
-    },
-    "POR": {
-      "yellow": 3,
-      "red": 0,
-      "yellow_red": 0
-    },
-    "USA": {
-      "yellow": 1,
-      "red": 0,
-      "yellow_red": 0
-    },
-    "SUI": {
-      "yellow": 2,
-      "red": 0,
-      "yellow_red": 0
-    },
-    "COD": {
-      "yellow": 1,
-      "red": 0,
-      "yellow_red": 0
-    },
-    "KSA": {
-      "yellow": 1,
-      "red": 0,
-      "yellow_red": 0
-    },
-    "PAR": {
-      "yellow": 4,
-      "red": 0,
-      "yellow_red": 0
-    },
     "CAN": {
       "yellow": 3,
       "red": 0,
@@ -68,12 +28,12 @@
       "red": 0,
       "yellow_red": 0
     },
-    "CZE": {
-      "yellow": 1,
+    "PAR": {
+      "yellow": 4,
       "red": 0,
       "yellow_red": 0
     },
-    "HAI": {
+    "CZE": {
       "yellow": 1,
       "red": 0,
       "yellow_red": 0
@@ -88,23 +48,28 @@
       "red": 0,
       "yellow_red": 0
     },
+    "HAI": {
+      "yellow": 1,
+      "red": 0,
+      "yellow_red": 0
+    },
     "QAT": {
-      "yellow": 2,
+      "yellow": 3,
       "red": 0,
       "yellow_red": 0
     },
     "NED": {
+      "yellow": 3,
+      "red": 0,
+      "yellow_red": 0
+    },
+    "BRA": {
       "yellow": 2,
       "red": 0,
       "yellow_red": 0
     },
-    "BEL": {
-      "yellow": 2,
-      "red": 0,
-      "yellow_red": 0
-    },
-    "KOR": {
-      "yellow": 2,
+    "SCO": {
+      "yellow": 3,
       "red": 0,
       "yellow_red": 0
     },
@@ -118,17 +83,22 @@
       "red": 0,
       "yellow_red": 0
     },
-    "IRQ": {
-      "yellow": 1,
+    "BEL": {
+      "yellow": 2,
+      "red": 0,
+      "yellow_red": 0
+    },
+    "KOR": {
+      "yellow": 3,
       "red": 0,
       "yellow_red": 0
     },
     "PAN": {
-      "yellow": 1,
+      "yellow": 2,
       "red": 0,
       "yellow_red": 0
     },
-    "MEX": {
+    "IRQ": {
       "yellow": 1,
       "red": 0,
       "yellow_red": 0
@@ -148,12 +118,37 @@
       "red": 0,
       "yellow_red": 0
     },
-    "TUN": {
+    "MEX": {
       "yellow": 1,
       "red": 0,
       "yellow_red": 0
     },
     "COL": {
+      "yellow": 1,
+      "red": 0,
+      "yellow_red": 0
+    },
+    "SUI": {
+      "yellow": 1,
+      "red": 0,
+      "yellow_red": 0
+    },
+    "TUN": {
+      "yellow": 1,
+      "red": 0,
+      "yellow_red": 0
+    },
+    "IRN": {
+      "yellow": 1,
+      "red": 0,
+      "yellow_red": 0
+    },
+    "POR": {
+      "yellow": 1,
+      "red": 0,
+      "yellow_red": 0
+    },
+    "USA": {
       "yellow": 1,
       "red": 0,
       "yellow_red": 0

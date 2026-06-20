@@ -424,6 +424,7 @@ function renderThirdsPanel(standings, eliminatedThirds = new Set()) {
       if (sel.value === code) return;
       sel.value = code;
       renderBracket(code, currentStandings, r32Matches);
+      scrollToBracket();
     });
   });
 }
@@ -484,6 +485,12 @@ function populateTeamDropdown(standings, defaultCode = 'USA') {
 
   if (defaultCode && sel.querySelector(`option[value="${defaultCode}"]`)) {
     sel.value = defaultCode;
+  }
+}
+
+function scrollToBracket() {
+  if (window.innerWidth <= 900) {
+    document.getElementById('bracket-panel').scrollIntoView({ behavior: 'smooth', block: 'start' });
   }
 }
 
@@ -909,6 +916,7 @@ async function init() {
     if (sel.value === code) return;
     sel.value = code;
     renderBracket(code, currentStandings, r32Matches);
+    scrollToBracket();
   });
 
   document.getElementById('refresh-btn').addEventListener('click', () => {

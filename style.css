@@ -92,7 +92,7 @@ main {
 /* ── Groups grid ─────────────────────────────────────────────────────────── */
 #groups-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 10px;
 }
 
@@ -603,6 +603,33 @@ main {
 
 /* ── Utilities ───────────────────────────────────────────────────────────── */
 .dim { color: var(--dim); }
+
+/* ── Mobile layout (≤ 900px) ─────────────────────────────────────────────── */
+@media (max-width: 900px) {
+  html, body { height: auto; }
+  body { overflow-y: auto; }
+
+  main {
+    flex-direction: column;
+    height: auto;
+    overflow: visible;
+  }
+
+  #groups-panel {
+    min-width: 0;
+    border-right: none;
+    border-bottom: 1px solid var(--border);
+    overflow-y: visible;
+    padding: 10px;
+  }
+
+  #bracket-panel {
+    flex: none;
+    width: 100%;
+    overflow-y: visible;
+    padding: 16px;
+  }
+}
 .hidden { display: none !important; }
 .center { text-align: center; }
 .loading-msg { color: var(--dim); padding: 20px; text-align: center; }

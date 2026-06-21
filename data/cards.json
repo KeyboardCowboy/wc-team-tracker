@@ -58,6 +58,11 @@
       "red": 0,
       "yellow_red": 0
     },
+    "KOR": {
+      "yellow": 2,
+      "red": 0,
+      "yellow_red": 0
+    },
     "CUW": {
       "yellow": 5,
       "red": 0,
@@ -74,11 +79,6 @@
       "yellow_red": 0
     },
     "IRN": {
-      "yellow": 1,
-      "red": 0,
-      "yellow_red": 0
-    },
-    "KOR": {
       "yellow": 1,
       "red": 0,
       "yellow_red": 0
@@ -149,11 +149,6 @@
       "yellow_red": 0
     },
     "EGY": {
-      "yellow": 1,
-      "red": 0,
-      "yellow_red": 0
-    },
-    "GHA": {
       "yellow": 1,
       "red": 0,
       "yellow_red": 0

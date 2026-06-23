@@ -19,7 +19,7 @@
       "yellow_red": 0
     },
     "BEL": {
-      "yellow": 3,
+      "yellow": 2,
       "red": 1,
       "yellow_red": 0
     },
@@ -38,18 +38,13 @@
       "red": 0,
       "yellow_red": 0
     },
-    "SWE": {
-      "yellow": 3,
-      "red": 0,
-      "yellow_red": 0
-    },
     "NZL": {
       "yellow": 2,
       "red": 0,
       "yellow_red": 0
     },
     "IRQ": {
-      "yellow": 1,
+      "yellow": 2,
       "red": 0,
       "yellow_red": 0
     },
@@ -59,7 +54,7 @@
       "yellow_red": 0
     },
     "ARG": {
-      "yellow": 1,
+      "yellow": 2,
       "red": 0,
       "yellow_red": 0
     },
@@ -68,8 +63,8 @@
       "red": 0,
       "yellow_red": 0
     },
-    "USA": {
-      "yellow": 4,
+    "SWE": {
+      "yellow": 3,
       "red": 0,
       "yellow_red": 0
     },
@@ -93,8 +88,8 @@
       "red": 0,
       "yellow_red": 0
     },
-    "CAN": {
-      "yellow": 3,
+    "USA": {
+      "yellow": 4,
       "red": 0,
       "yellow_red": 0
     },
@@ -103,13 +98,8 @@
       "red": 0,
       "yellow_red": 0
     },
-    "AUS": {
-      "yellow": 4,
-      "red": 0,
-      "yellow_red": 0
-    },
-    "SUI": {
-      "yellow": 2,
+    "CAN": {
+      "yellow": 3,
       "red": 0,
       "yellow_red": 0
     },
@@ -128,8 +118,13 @@
       "red": 0,
       "yellow_red": 0
     },
-    "CIV": {
-      "yellow": 3,
+    "AUS": {
+      "yellow": 4,
+      "red": 0,
+      "yellow_red": 0
+    },
+    "SUI": {
+      "yellow": 2,
       "red": 0,
       "yellow_red": 0
     },
@@ -138,17 +133,22 @@
       "red": 0,
       "yellow_red": 0
     },
+    "CIV": {
+      "yellow": 2,
+      "red": 0,
+      "yellow_red": 0
+    },
     "HAI": {
       "yellow": 4,
       "red": 0,
       "yellow_red": 0
     },
-    "BRA": {
+    "POR": {
       "yellow": 3,
       "red": 0,
       "yellow_red": 0
     },
-    "POR": {
+    "BRA": {
       "yellow": 3,
       "red": 0,
       "yellow_red": 0
@@ -163,23 +163,23 @@
       "red": 0,
       "yellow_red": 0
     },
-    "MAR": {
-      "yellow": 1,
-      "red": 0,
-      "yellow_red": 0
-    },
     "COD": {
       "yellow": 1,
       "red": 0,
       "yellow_red": 0
     },
-    "CZE": {
+    "MAR": {
       "yellow": 1,
       "red": 0,
       "yellow_red": 0
     },
     "TUR": {
       "yellow": 2,
+      "red": 0,
+      "yellow_red": 0
+    },
+    "CZE": {
+      "yellow": 1,
       "red": 0,
       "yellow_red": 0
     },

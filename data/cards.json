@@ -14,7 +14,7 @@
       "yellow_red": 0
     },
     "QAT": {
-      "yellow": 2,
+      "yellow": 1,
       "red": 2,
       "yellow_red": 0
     },
@@ -29,27 +29,37 @@
       "yellow_red": 0
     },
     "PAR": {
-      "yellow": 4,
+      "yellow": 5,
       "red": 1,
       "yellow_red": 0
     },
     "CPV": {
+      "yellow": 3,
+      "red": 0,
+      "yellow_red": 0
+    },
+    "ECU": {
       "yellow": 2,
+      "red": 0,
+      "yellow_red": 0
+    },
+    "BRA": {
+      "yellow": 2,
+      "red": 0,
+      "yellow_red": 0
+    },
+    "COD": {
+      "yellow": 2,
+      "red": 0,
+      "yellow_red": 0
+    },
+    "CUW": {
+      "yellow": 3,
       "red": 0,
       "yellow_red": 0
     },
     "JOR": {
       "yellow": 1,
-      "red": 0,
-      "yellow_red": 0
-    },
-    "CUW": {
-      "yellow": 4,
-      "red": 0,
-      "yellow_red": 0
-    },
-    "CAN": {
-      "yellow": 3,
       "red": 0,
       "yellow_red": 0
     },
@@ -63,13 +73,13 @@
       "red": 0,
       "yellow_red": 0
     },
-    "SWE": {
-      "yellow": 3,
+    "CAN": {
+      "yellow": 2,
       "red": 0,
       "yellow_red": 0
     },
-    "HAI": {
-      "yellow": 4,
+    "SWE": {
+      "yellow": 3,
       "red": 0,
       "yellow_red": 0
     },
@@ -78,8 +88,8 @@
       "red": 0,
       "yellow_red": 0
     },
-    "BRA": {
-      "yellow": 1,
+    "HAI": {
+      "yellow": 3,
       "red": 0,
       "yellow_red": 0
     },
@@ -129,11 +139,6 @@
       "yellow_red": 0
     },
     "CIV": {
-      "yellow": 2,
-      "red": 0,
-      "yellow_red": 0
-    },
-    "ECU": {
       "yellow": 1,
       "red": 0,
       "yellow_red": 0
@@ -148,13 +153,13 @@
       "red": 0,
       "yellow_red": 0
     },
-    "KSA": {
-      "yellow": 3,
+    "ESP": {
+      "yellow": 1,
       "red": 0,
       "yellow_red": 0
     },
-    "ESP": {
-      "yellow": 1,
+    "KSA": {
+      "yellow": 3,
       "red": 0,
       "yellow_red": 0
     },
@@ -178,11 +183,6 @@
       "red": 0,
       "yellow_red": 0
     },
-    "ENG": {
-      "yellow": 1,
-      "red": 0,
-      "yellow_red": 0
-    },
     "SUI": {
       "yellow": 2,
       "red": 0,
@@ -190,6 +190,11 @@
     },
     "UZB": {
       "yellow": 2,
+      "red": 0,
+      "yellow_red": 0
+    },
+    "ENG": {
+      "yellow": 1,
       "red": 0,
       "yellow_red": 0
     },
@@ -209,11 +214,6 @@
       "yellow_red": 0
     },
     "ARG": {
-      "yellow": 1,
-      "red": 0,
-      "yellow_red": 0
-    },
-    "COD": {
       "yellow": 1,
       "red": 0,
       "yellow_red": 0

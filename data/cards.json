@@ -63,8 +63,28 @@
       "red": 0,
       "yellow_red": 0
     },
+    "CAN": {
+      "yellow": 5,
+      "red": 0,
+      "yellow_red": 0
+    },
+    "SWE": {
+      "yellow": 5,
+      "red": 0,
+      "yellow_red": 0
+    },
+    "AUS": {
+      "yellow": 5,
+      "red": 0,
+      "yellow_red": 0
+    },
     "CIV": {
       "yellow": 4,
+      "red": 0,
+      "yellow_red": 0
+    },
+    "GHA": {
+      "yellow": 2,
       "red": 0,
       "yellow_red": 0
     },
@@ -83,16 +103,6 @@
       "red": 0,
       "yellow_red": 0
     },
-    "GHA": {
-      "yellow": 2,
-      "red": 0,
-      "yellow_red": 0
-    },
-    "SWE": {
-      "yellow": 5,
-      "red": 0,
-      "yellow_red": 0
-    },
     "USA": {
       "yellow": 5,
       "red": 0,
@@ -108,13 +118,13 @@
       "red": 0,
       "yellow_red": 0
     },
-    "COD": {
-      "yellow": 2,
+    "KSA": {
+      "yellow": 6,
       "red": 0,
       "yellow_red": 0
     },
-    "KSA": {
-      "yellow": 6,
+    "COD": {
+      "yellow": 2,
       "red": 0,
       "yellow_red": 0
     },
@@ -133,11 +143,6 @@
       "red": 0,
       "yellow_red": 0
     },
-    "CAN": {
-      "yellow": 5,
-      "red": 0,
-      "yellow_red": 0
-    },
     "NZL": {
       "yellow": 4,
       "red": 0,
@@ -153,6 +158,11 @@
       "red": 0,
       "yellow_red": 0
     },
+    "NOR": {
+      "yellow": 1,
+      "red": 0,
+      "yellow_red": 0
+    },
     "JPN": {
       "yellow": 1,
       "red": 0,
@@ -163,23 +173,8 @@
       "red": 0,
       "yellow_red": 0
     },
-    "NOR": {
-      "yellow": 1,
-      "red": 0,
-      "yellow_red": 0
-    },
-    "AUS": {
-      "yellow": 5,
-      "red": 0,
-      "yellow_red": 0
-    },
     "AUT": {
       "yellow": 3,
-      "red": 0,
-      "yellow_red": 0
-    },
-    "FRA": {
-      "yellow": 1,
       "red": 0,
       "yellow_red": 0
     },
@@ -190,6 +185,11 @@
     },
     "PAN": {
       "yellow": 3,
+      "red": 0,
+      "yellow_red": 0
+    },
+    "FRA": {
+      "yellow": 1,
       "red": 0,
       "yellow_red": 0
     },
@@ -213,17 +213,17 @@
       "red": 0,
       "yellow_red": 0
     },
-    "UZB": {
-      "yellow": 2,
-      "red": 0,
-      "yellow_red": 0
-    },
     "ENG": {
       "yellow": 1,
       "red": 0,
       "yellow_red": 0
     },
     "SEN": {
+      "yellow": 2,
+      "red": 0,
+      "yellow_red": 0
+    },
+    "UZB": {
       "yellow": 2,
       "red": 0,
       "yellow_red": 0

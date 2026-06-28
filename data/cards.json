@@ -9,12 +9,12 @@
       "yellow_red": 0
     },
     "URU": {
-      "yellow": 5,
+      "yellow": 4,
       "red": 1,
       "yellow_red": 0
     },
     "BEL": {
-      "yellow": 2,
+      "yellow": 3,
       "red": 1,
       "yellow_red": 0
     },
@@ -34,13 +34,18 @@
       "yellow_red": 0
     },
     "BIH": {
-      "yellow": 5,
+      "yellow": 6,
       "red": 1,
       "yellow_red": 0
     },
     "MEX": {
       "yellow": 2,
       "red": 1,
+      "yellow_red": 0
+    },
+    "IRN": {
+      "yellow": 6,
+      "red": 0,
       "yellow_red": 0
     },
     "EGY": {
@@ -63,12 +68,72 @@
       "red": 0,
       "yellow_red": 0
     },
-    "IRN": {
+    "AUT": {
+      "yellow": 3,
+      "red": 0,
+      "yellow_red": 0
+    },
+    "NZL": {
+      "yellow": 3,
+      "red": 0,
+      "yellow_red": 0
+    },
+    "HAI": {
+      "yellow": 7,
+      "red": 0,
+      "yellow_red": 0
+    },
+    "MAR": {
+      "yellow": 1,
+      "red": 0,
+      "yellow_red": 0
+    },
+    "PAN": {
+      "yellow": 3,
+      "red": 0,
+      "yellow_red": 0
+    },
+    "FRA": {
+      "yellow": 1,
+      "red": 0,
+      "yellow_red": 0
+    },
+    "KSA": {
       "yellow": 6,
       "red": 0,
       "yellow_red": 0
     },
+    "ESP": {
+      "yellow": 2,
+      "red": 0,
+      "yellow_red": 0
+    },
+    "CAN": {
+      "yellow": 5,
+      "red": 0,
+      "yellow_red": 0
+    },
+    "ENG": {
+      "yellow": 2,
+      "red": 0,
+      "yellow_red": 0
+    },
+    "CIV": {
+      "yellow": 3,
+      "red": 0,
+      "yellow_red": 0
+    },
     "ECU": {
+      "yellow": 5,
+      "red": 0,
+      "yellow_red": 0
+    },
+    "USA": {
+      "yellow": 4,
+      "red": 0,
+      "yellow_red": 0
+    },
+    "JOR": {
       "yellow": 4,
       "red": 0,
       "yellow_red": 0
@@ -79,7 +144,7 @@
       "yellow_red": 0
     },
     "SCO": {
-      "yellow": 5,
+      "yellow": 4,
       "red": 0,
       "yellow_red": 0
     },
@@ -88,23 +153,8 @@
       "red": 0,
       "yellow_red": 0
     },
-    "KSA": {
-      "yellow": 5,
-      "red": 0,
-      "yellow_red": 0
-    },
-    "ESP": {
-      "yellow": 1,
-      "red": 0,
-      "yellow_red": 0
-    },
     "POR": {
       "yellow": 4,
-      "red": 0,
-      "yellow_red": 0
-    },
-    "HAI": {
-      "yellow": 6,
       "red": 0,
       "yellow_red": 0
     },
@@ -119,7 +169,7 @@
       "yellow_red": 0
     },
     "AUS": {
-      "yellow": 5,
+      "yellow": 4,
       "red": 0,
       "yellow_red": 0
     },
@@ -133,23 +183,8 @@
       "red": 0,
       "yellow_red": 0
     },
-    "ENG": {
-      "yellow": 1,
-      "red": 0,
-      "yellow_red": 0
-    },
-    "AUT": {
-      "yellow": 4,
-      "red": 0,
-      "yellow_red": 0
-    },
     "CRO": {
       "yellow": 2,
-      "red": 0,
-      "yellow_red": 0
-    },
-    "USA": {
-      "yellow": 4,
       "red": 0,
       "yellow_red": 0
     },
@@ -159,12 +194,7 @@
       "yellow_red": 0
     },
     "NED": {
-      "yellow": 3,
-      "red": 0,
-      "yellow_red": 0
-    },
-    "NZL": {
-      "yellow": 4,
+      "yellow": 2,
       "red": 0,
       "yellow_red": 0
     },
@@ -173,18 +203,8 @@
       "red": 0,
       "yellow_red": 0
     },
-    "PAN": {
-      "yellow": 3,
-      "red": 0,
-      "yellow_red": 0
-    },
     "ALG": {
       "yellow": 1,
-      "red": 0,
-      "yellow_red": 0
-    },
-    "JOR": {
-      "yellow": 3,
       "red": 0,
       "yellow_red": 0
     },
@@ -198,18 +218,8 @@
       "red": 0,
       "yellow_red": 0
     },
-    "CAN": {
-      "yellow": 4,
-      "red": 0,
-      "yellow_red": 0
-    },
-    "CIV": {
-      "yellow": 3,
-      "red": 0,
-      "yellow_red": 0
-    },
     "BRA": {
-      "yellow": 5,
+      "yellow": 3,
       "red": 0,
       "yellow_red": 0
     },
@@ -219,21 +229,6 @@
       "yellow_red": 0
     },
     "GER": {
-      "yellow": 1,
-      "red": 0,
-      "yellow_red": 0
-    },
-    "JPN": {
-      "yellow": 1,
-      "red": 0,
-      "yellow_red": 0
-    },
-    "NOR": {
-      "yellow": 1,
-      "red": 0,
-      "yellow_red": 0
-    },
-    "MAR": {
       "yellow": 1,
       "red": 0,
       "yellow_red": 0

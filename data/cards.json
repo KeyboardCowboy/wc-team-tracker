@@ -33,13 +33,13 @@
       "red": 2,
       "yellow_red": 0
     },
-    "IRQ": {
-      "yellow": 4,
+    "PAR": {
+      "yellow": 9,
       "red": 1,
       "yellow_red": 0
     },
-    "PAR": {
-      "yellow": 9,
+    "IRQ": {
+      "yellow": 4,
       "red": 1,
       "yellow_red": 0
     },
@@ -69,17 +69,12 @@
       "yellow_red": 0
     },
     "CUW": {
-      "yellow": 7,
+      "yellow": 6,
       "red": 0,
       "yellow_red": 0
     },
     "BRA": {
       "yellow": 7,
-      "red": 0,
-      "yellow_red": 0
-    },
-    "NZL": {
-      "yellow": 4,
       "red": 0,
       "yellow_red": 0
     },
@@ -90,6 +85,11 @@
     },
     "CRO": {
       "yellow": 2,
+      "red": 0,
+      "yellow_red": 0
+    },
+    "NZL": {
+      "yellow": 4,
       "red": 0,
       "yellow_red": 0
     },
@@ -109,7 +109,7 @@
       "yellow_red": 0
     },
     "NOR": {
-      "yellow": 1,
+      "yellow": 2,
       "red": 0,
       "yellow_red": 0
     },

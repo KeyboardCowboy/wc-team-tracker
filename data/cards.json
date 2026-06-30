@@ -19,22 +19,22 @@
       "yellow_red": 0
     },
     "RSA": {
-      "yellow": 5,
+      "yellow": 4,
       "red": 2,
       "yellow_red": 0
     },
     "PAR": {
-      "yellow": 9,
+      "yellow": 8,
       "red": 1,
       "yellow_red": 0
     },
     "IRQ": {
-      "yellow": 3,
+      "yellow": 4,
       "red": 1,
       "yellow_red": 0
     },
     "BIH": {
-      "yellow": 6,
+      "yellow": 5,
       "red": 1,
       "yellow_red": 0
     },
@@ -43,13 +43,18 @@
       "red": 1,
       "yellow_red": 0
     },
+    "MAR": {
+      "yellow": 2,
+      "red": 0,
+      "yellow_red": 0
+    },
     "IRN": {
       "yellow": 6,
       "red": 0,
       "yellow_red": 0
     },
     "EGY": {
-      "yellow": 6,
+      "yellow": 5,
       "red": 0,
       "yellow_red": 0
     },
@@ -64,47 +69,57 @@
       "yellow_red": 0
     },
     "CUW": {
-      "yellow": 7,
-      "red": 0,
-      "yellow_red": 0
-    },
-    "BRA": {
       "yellow": 5,
       "red": 0,
       "yellow_red": 0
     },
-    "MAR": {
+    "BRA": {
+      "yellow": 7,
+      "red": 0,
+      "yellow_red": 0
+    },
+    "JPN": {
+      "yellow": 4,
+      "red": 0,
+      "yellow_red": 0
+    },
+    "NED": {
       "yellow": 2,
       "red": 0,
       "yellow_red": 0
     },
-    "CAN": {
-      "yellow": 6,
-      "red": 0,
-      "yellow_red": 0
-    },
-    "KSA": {
-      "yellow": 6,
-      "red": 0,
-      "yellow_red": 0
-    },
-    "ESP": {
-      "yellow": 2,
-      "red": 0,
-      "yellow_red": 0
-    },
-    "CIV": {
-      "yellow": 3,
-      "red": 0,
-      "yellow_red": 0
-    },
-    "ECU": {
+    "SCO": {
       "yellow": 5,
       "red": 0,
       "yellow_red": 0
     },
     "USA": {
+      "yellow": 5,
+      "red": 0,
+      "yellow_red": 0
+    },
+    "NOR": {
+      "yellow": 1,
+      "red": 0,
+      "yellow_red": 0
+    },
+    "AUT": {
       "yellow": 4,
+      "red": 0,
+      "yellow_red": 0
+    },
+    "AUS": {
+      "yellow": 5,
+      "red": 0,
+      "yellow_red": 0
+    },
+    "CIV": {
+      "yellow": 4,
+      "red": 0,
+      "yellow_red": 0
+    },
+    "NZL": {
+      "yellow": 3,
       "red": 0,
       "yellow_red": 0
     },
@@ -113,8 +128,43 @@
       "red": 0,
       "yellow_red": 0
     },
-    "JOR": {
+    "GER": {
+      "yellow": 2,
+      "red": 0,
+      "yellow_red": 0
+    },
+    "FRA": {
+      "yellow": 1,
+      "red": 0,
+      "yellow_red": 0
+    },
+    "CAN": {
+      "yellow": 6,
+      "red": 0,
+      "yellow_red": 0
+    },
+    "PAN": {
+      "yellow": 3,
+      "red": 0,
+      "yellow_red": 0
+    },
+    "KSA": {
+      "yellow": 5,
+      "red": 0,
+      "yellow_red": 0
+    },
+    "ESP": {
+      "yellow": 2,
+      "red": 0,
+      "yellow_red": 0
+    },
+    "ECU": {
       "yellow": 4,
+      "red": 0,
+      "yellow_red": 0
+    },
+    "JOR": {
+      "yellow": 3,
       "red": 0,
       "yellow_red": 0
     },
@@ -128,27 +178,12 @@
       "red": 0,
       "yellow_red": 0
     },
-    "SCO": {
-      "yellow": 4,
-      "red": 0,
-      "yellow_red": 0
-    },
     "KOR": {
       "yellow": 4,
       "red": 0,
       "yellow_red": 0
     },
-    "JPN": {
-      "yellow": 3,
-      "red": 0,
-      "yellow_red": 0
-    },
     "POR": {
-      "yellow": 4,
-      "red": 0,
-      "yellow_red": 0
-    },
-    "AUS": {
       "yellow": 4,
       "red": 0,
       "yellow_red": 0
@@ -164,7 +199,7 @@
       "yellow_red": 0
     },
     "SUI": {
-      "yellow": 3,
+      "yellow": 2,
       "red": 0,
       "yellow_red": 0
     },
@@ -174,27 +209,12 @@
       "yellow_red": 0
     },
     "CRO": {
-      "yellow": 2,
-      "red": 0,
-      "yellow_red": 0
-    },
-    "AUT": {
-      "yellow": 2,
+      "yellow": 1,
       "red": 0,
       "yellow_red": 0
     },
     "COL": {
-      "yellow": 4,
-      "red": 0,
-      "yellow_red": 0
-    },
-    "NED": {
-      "yellow": 2,
-      "red": 0,
-      "yellow_red": 0
-    },
-    "NZL": {
-      "yellow": 2,
+      "yellow": 3,
       "red": 0,
       "yellow_red": 0
     },
@@ -203,33 +223,18 @@
       "red": 0,
       "yellow_red": 0
     },
-    "PAN": {
-      "yellow": 2,
-      "red": 0,
-      "yellow_red": 0
-    },
     "ALG": {
       "yellow": 1,
       "red": 0,
       "yellow_red": 0
     },
-    "GER": {
-      "yellow": 2,
-      "red": 0,
-      "yellow_red": 0
-    },
     "SWE": {
-      "yellow": 5,
+      "yellow": 4,
       "red": 0,
       "yellow_red": 0
     },
     "ARG": {
       "yellow": 2,
-      "red": 0,
-      "yellow_red": 0
-    },
-    "TUN": {
-      "yellow": 1,
       "red": 0,
       "yellow_red": 0
     }

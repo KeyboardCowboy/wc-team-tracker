@@ -148,11 +148,6 @@
       "red": 0,
       "yellow_red": 0
     },
-    "SEN": {
-      "yellow": 3,
-      "red": 0,
-      "yellow_red": 0
-    },
     "ALG": {
       "yellow": 3,
       "red": 0,
@@ -164,6 +159,11 @@
       "yellow_red": 0
     },
     "SUI": {
+      "yellow": 3,
+      "red": 0,
+      "yellow_red": 0
+    },
+    "SEN": {
       "yellow": 3,
       "red": 0,
       "yellow_red": 0

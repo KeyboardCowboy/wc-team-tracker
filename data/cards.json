@@ -18,13 +18,13 @@
       "red": 1,
       "yellow_red": 0
     },
-    "PAR": {
-      "yellow": 9,
+    "IRQ": {
+      "yellow": 4,
       "red": 1,
       "yellow_red": 0
     },
-    "IRQ": {
-      "yellow": 4,
+    "PAR": {
+      "yellow": 9,
       "red": 1,
       "yellow_red": 0
     },
@@ -83,13 +83,13 @@
       "red": 0,
       "yellow_red": 0
     },
-    "COD": {
-      "yellow": 6,
+    "BRA": {
+      "yellow": 8,
       "red": 0,
       "yellow_red": 0
     },
-    "BRA": {
-      "yellow": 8,
+    "COD": {
+      "yellow": 6,
       "red": 0,
       "yellow_red": 0
     },
@@ -148,13 +148,13 @@
       "red": 0,
       "yellow_red": 0
     },
-    "KOR": {
-      "yellow": 4,
+    "SCO": {
+      "yellow": 5,
       "red": 0,
       "yellow_red": 0
     },
-    "SCO": {
-      "yellow": 5,
+    "KOR": {
+      "yellow": 4,
       "red": 0,
       "yellow_red": 0
     },
@@ -174,7 +174,7 @@
       "yellow_red": 0
     },
     "AUS": {
-      "yellow": 5,
+      "yellow": 4,
       "red": 0,
       "yellow_red": 0
     },
@@ -184,7 +184,7 @@
       "yellow_red": 0
     },
     "TUR": {
-      "yellow": 1,
+      "yellow": 2,
       "red": 0,
       "yellow_red": 0
     },
@@ -218,11 +218,6 @@
       "red": 0,
       "yellow_red": 0
     },
-    "JPN": {
-      "yellow": 4,
-      "red": 0,
-      "yellow_red": 0
-    },
     "FRA": {
       "yellow": 4,
       "red": 0,
@@ -230,6 +225,11 @@
     },
     "NOR": {
       "yellow": 2,
+      "red": 0,
+      "yellow_red": 0
+    },
+    "JPN": {
+      "yellow": 4,
       "red": 0,
       "yellow_red": 0
     },

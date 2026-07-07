@@ -73,13 +73,13 @@
       "red": 0,
       "yellow_red": 0
     },
-    "BRA": {
-      "yellow": 8,
+    "COD": {
+      "yellow": 6,
       "red": 0,
       "yellow_red": 0
     },
-    "COD": {
-      "yellow": 6,
+    "BRA": {
+      "yellow": 8,
       "red": 0,
       "yellow_red": 0
     },
@@ -113,18 +113,13 @@
       "red": 0,
       "yellow_red": 0
     },
-    "CPV": {
-      "yellow": 5,
-      "red": 0,
-      "yellow_red": 0
-    },
     "UZB": {
       "yellow": 4,
       "red": 0,
       "yellow_red": 0
     },
-    "JOR": {
-      "yellow": 4,
+    "CPV": {
+      "yellow": 5,
       "red": 0,
       "yellow_red": 0
     },
@@ -140,6 +135,11 @@
     },
     "ALG": {
       "yellow": 3,
+      "red": 0,
+      "yellow_red": 0
+    },
+    "JOR": {
+      "yellow": 4,
       "red": 0,
       "yellow_red": 0
     },
@@ -168,11 +168,6 @@
       "red": 0,
       "yellow_red": 0
     },
-    "NOR": {
-      "yellow": 2,
-      "red": 0,
-      "yellow_red": 0
-    },
     "JPN": {
       "yellow": 4,
       "red": 0,
@@ -180,6 +175,11 @@
     },
     "FRA": {
       "yellow": 4,
+      "red": 0,
+      "yellow_red": 0
+    },
+    "NOR": {
+      "yellow": 2,
       "red": 0,
       "yellow_red": 0
     },

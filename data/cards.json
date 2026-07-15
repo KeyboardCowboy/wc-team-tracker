@@ -13,13 +13,13 @@
       "red": 1,
       "yellow_red": 0
     },
-    "IRQ": {
-      "yellow": 4,
+    "PAR": {
+      "yellow": 8,
       "red": 1,
       "yellow_red": 0
     },
-    "PAR": {
-      "yellow": 8,
+    "IRQ": {
+      "yellow": 4,
       "red": 1,
       "yellow_red": 0
     },
@@ -38,12 +38,12 @@
       "red": 2,
       "yellow_red": 0
     },
-    "USA": {
+    "ENG": {
       "yellow": 7,
       "red": 1,
       "yellow_red": 0
     },
-    "ENG": {
+    "USA": {
       "yellow": 7,
       "red": 1,
       "yellow_red": 0
@@ -54,7 +54,7 @@
       "yellow_red": 0
     },
     "BEL": {
-      "yellow": 5,
+      "yellow": 6,
       "red": 1,
       "yellow_red": 0
     },
@@ -68,13 +68,13 @@
       "red": 0,
       "yellow_red": 0
     },
-    "BRA": {
-      "yellow": 8,
+    "COD": {
+      "yellow": 5,
       "red": 0,
       "yellow_red": 0
     },
-    "COD": {
-      "yellow": 5,
+    "BRA": {
+      "yellow": 8,
       "red": 0,
       "yellow_red": 0
     },
@@ -89,7 +89,7 @@
       "yellow_red": 1
     },
     "CAN": {
-      "yellow": 11,
+      "yellow": 10,
       "red": 0,
       "yellow_red": 0
     },
@@ -108,18 +108,13 @@
       "red": 0,
       "yellow_red": 0
     },
-    "POR": {
-      "yellow": 7,
-      "red": 0,
-      "yellow_red": 0
-    },
     "GHA": {
       "yellow": 6,
       "red": 0,
       "yellow_red": 0
     },
-    "CPV": {
-      "yellow": 5,
+    "POR": {
+      "yellow": 7,
       "red": 0,
       "yellow_red": 0
     },
@@ -128,8 +123,8 @@
       "red": 0,
       "yellow_red": 0
     },
-    "FRA": {
-      "yellow": 6,
+    "CPV": {
+      "yellow": 5,
       "red": 0,
       "yellow_red": 0
     },
@@ -140,6 +135,11 @@
     },
     "JPN": {
       "yellow": 4,
+      "red": 0,
+      "yellow_red": 0
+    },
+    "FRA": {
+      "yellow": 6,
       "red": 0,
       "yellow_red": 0
     },
@@ -163,13 +163,13 @@
       "red": 0,
       "yellow_red": 0
     },
-    "HAI": {
-      "yellow": 7,
+    "ESP": {
+      "yellow": 6,
       "red": 0,
       "yellow_red": 0
     },
-    "ESP": {
-      "yellow": 6,
+    "HAI": {
+      "yellow": 7,
       "red": 0,
       "yellow_red": 0
     },
@@ -198,12 +198,12 @@
       "red": 0,
       "yellow_red": 0
     },
-    "NED": {
+    "GER": {
       "yellow": 3,
       "red": 0,
       "yellow_red": 0
     },
-    "GER": {
+    "NED": {
       "yellow": 3,
       "red": 0,
       "yellow_red": 0

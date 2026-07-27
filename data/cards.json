@@ -73,13 +73,13 @@
       "red": 0,
       "yellow_red": 0
     },
-    "BRA": {
-      "yellow": 8,
+    "COD": {
+      "yellow": 6,
       "red": 0,
       "yellow_red": 0
     },
-    "COD": {
-      "yellow": 6,
+    "BRA": {
+      "yellow": 8,
       "red": 0,
       "yellow_red": 0
     },
@@ -163,13 +163,13 @@
       "red": 0,
       "yellow_red": 0
     },
-    "NOR": {
-      "yellow": 3,
+    "JPN": {
+      "yellow": 4,
       "red": 0,
       "yellow_red": 0
     },
-    "JPN": {
-      "yellow": 4,
+    "NOR": {
+      "yellow": 3,
       "red": 0,
       "yellow_red": 0
     },

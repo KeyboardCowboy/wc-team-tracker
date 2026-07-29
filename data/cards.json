@@ -14,7 +14,7 @@
       "yellow_red": 0
     },
     "ECU": {
-      "yellow": 7,
+      "yellow": 8,
       "red": 1,
       "yellow_red": 0
     },
@@ -43,12 +43,12 @@
       "red": 2,
       "yellow_red": 0
     },
-    "USA": {
-      "yellow": 7,
+    "ENG": {
+      "yellow": 8,
       "red": 1,
       "yellow_red": 0
     },
-    "ENG": {
+    "USA": {
       "yellow": 7,
       "red": 1,
       "yellow_red": 0
@@ -68,23 +68,28 @@
       "red": 0,
       "yellow_red": 0
     },
-    "GHA": {
-      "yellow": 6,
-      "red": 0,
-      "yellow_red": 0
-    },
-    "POR": {
+    "CUW": {
       "yellow": 7,
       "red": 0,
       "yellow_red": 0
     },
-    "UZB": {
-      "yellow": 4,
+    "POR": {
+      "yellow": 5,
       "red": 0,
       "yellow_red": 0
     },
-    "CPV": {
-      "yellow": 5,
+    "CAN": {
+      "yellow": 11,
+      "red": 0,
+      "yellow_red": 0
+    },
+    "COD": {
+      "yellow": 6,
+      "red": 0,
+      "yellow_red": 0
+    },
+    "BRA": {
+      "yellow": 7,
       "red": 0,
       "yellow_red": 0
     },
@@ -95,26 +100,6 @@
     },
     "SUI": {
       "yellow": 7,
-      "red": 0,
-      "yellow_red": 0
-    },
-    "CUW": {
-      "yellow": 7,
-      "red": 0,
-      "yellow_red": 0
-    },
-    "CAN": {
-      "yellow": 11,
-      "red": 0,
-      "yellow_red": 0
-    },
-    "COD": {
-      "yellow": 5,
-      "red": 0,
-      "yellow_red": 0
-    },
-    "BRA": {
-      "yellow": 8,
       "red": 0,
       "yellow_red": 0
     },
@@ -133,33 +118,23 @@
       "red": 0,
       "yellow_red": 0
     },
-    "JPN": {
+    "GHA": {
+      "yellow": 6,
+      "red": 0,
+      "yellow_red": 0
+    },
+    "UZB": {
       "yellow": 4,
       "red": 0,
       "yellow_red": 0
     },
-    "SCO": {
-      "yellow": 4,
-      "red": 0,
-      "yellow_red": 0
-    },
-    "HAI": {
-      "yellow": 7,
-      "red": 0,
-      "yellow_red": 0
-    },
-    "AUS": {
+    "CPV": {
       "yellow": 5,
       "red": 0,
       "yellow_red": 0
     },
-    "KOR": {
-      "yellow": 3,
-      "red": 0,
-      "yellow_red": 0
-    },
-    "NOR": {
-      "yellow": 3,
+    "ESP": {
+      "yellow": 6,
       "red": 0,
       "yellow_red": 0
     },
@@ -168,18 +143,8 @@
       "red": 0,
       "yellow_red": 0
     },
-    "SEN": {
-      "yellow": 3,
-      "red": 0,
-      "yellow_red": 0
-    },
-    "ALG": {
-      "yellow": 3,
-      "red": 0,
-      "yellow_red": 0
-    },
-    "KSA": {
-      "yellow": 5,
+    "CZE": {
+      "yellow": 1,
       "red": 0,
       "yellow_red": 0
     },
@@ -188,27 +153,27 @@
       "red": 0,
       "yellow_red": 0
     },
-    "NED": {
-      "yellow": 3,
-      "red": 0,
-      "yellow_red": 0
-    },
-    "NZL": {
-      "yellow": 4,
-      "red": 0,
-      "yellow_red": 0
-    },
-    "CZE": {
-      "yellow": 1,
-      "red": 0,
-      "yellow_red": 0
-    },
-    "ESP": {
+    "SCO": {
       "yellow": 5,
       "red": 0,
       "yellow_red": 0
     },
+    "KOR": {
+      "yellow": 4,
+      "red": 0,
+      "yellow_red": 0
+    },
     "PAN": {
+      "yellow": 3,
+      "red": 0,
+      "yellow_red": 0
+    },
+    "AUS": {
+      "yellow": 4,
+      "red": 0,
+      "yellow_red": 0
+    },
+    "ALG": {
       "yellow": 3,
       "red": 0,
       "yellow_red": 0
@@ -223,6 +188,11 @@
       "red": 0,
       "yellow_red": 0
     },
+    "KSA": {
+      "yellow": 6,
+      "red": 0,
+      "yellow_red": 0
+    },
     "SWE": {
       "yellow": 5,
       "red": 0,
@@ -233,13 +203,43 @@
       "red": 0,
       "yellow_red": 0
     },
+    "JPN": {
+      "yellow": 4,
+      "red": 0,
+      "yellow_red": 0
+    },
+    "NOR": {
+      "yellow": 3,
+      "red": 0,
+      "yellow_red": 0
+    },
     "CIV": {
       "yellow": 4,
       "red": 0,
       "yellow_red": 0
     },
+    "HAI": {
+      "yellow": 7,
+      "red": 0,
+      "yellow_red": 0
+    },
     "TUN": {
       "yellow": 1,
+      "red": 0,
+      "yellow_red": 0
+    },
+    "NZL": {
+      "yellow": 3,
+      "red": 0,
+      "yellow_red": 0
+    },
+    "NED": {
+      "yellow": 2,
+      "red": 0,
+      "yellow_red": 0
+    },
+    "SEN": {
+      "yellow": 2,
       "red": 0,
       "yellow_red": 0
     }

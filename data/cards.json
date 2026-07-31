@@ -9,17 +9,12 @@
       "yellow_red": 0
     },
     "USA": {
-      "yellow": 7,
-      "red": 1,
-      "yellow_red": 0
-    },
-    "BIH": {
       "yellow": 6,
       "red": 1,
       "yellow_red": 0
     },
-    "URU": {
-      "yellow": 4,
+    "BIH": {
+      "yellow": 7,
       "red": 1,
       "yellow_red": 0
     },
@@ -29,7 +24,12 @@
       "yellow_red": 0
     },
     "ECU": {
-      "yellow": 8,
+      "yellow": 7,
+      "red": 1,
+      "yellow_red": 0
+    },
+    "URU": {
+      "yellow": 5,
       "red": 1,
       "yellow_red": 0
     },
@@ -39,7 +39,7 @@
       "yellow_red": 0
     },
     "PAR": {
-      "yellow": 8,
+      "yellow": 9,
       "red": 1,
       "yellow_red": 0
     },
@@ -48,28 +48,33 @@
       "red": 2,
       "yellow_red": 0
     },
-    "MEX": {
-      "yellow": 4,
-      "red": 1,
-      "yellow_red": 0
-    },
     "BEL": {
       "yellow": 6,
       "red": 1,
       "yellow_red": 0
     },
-    "MAR": {
-      "yellow": 6,
-      "red": 0,
+    "MEX": {
+      "yellow": 4,
+      "red": 1,
       "yellow_red": 0
     },
-    "CRO": {
-      "yellow": 4,
+    "MAR": {
+      "yellow": 7,
       "red": 0,
       "yellow_red": 0
     },
     "EGY": {
-      "yellow": 10,
+      "yellow": 12,
+      "red": 0,
+      "yellow_red": 0
+    },
+    "SUI": {
+      "yellow": 7,
+      "red": 0,
+      "yellow_red": 1
+    },
+    "CRO": {
+      "yellow": 4,
       "red": 0,
       "yellow_red": 0
     },
@@ -118,13 +123,8 @@
       "red": 0,
       "yellow_red": 0
     },
-    "SUI": {
-      "yellow": 6,
-      "red": 0,
-      "yellow_red": 1
-    },
     "CUW": {
-      "yellow": 6,
+      "yellow": 7,
       "red": 0,
       "yellow_red": 0
     },
@@ -138,6 +138,46 @@
       "red": 0,
       "yellow_red": 0
     },
+    "SEN": {
+      "yellow": 3,
+      "red": 0,
+      "yellow_red": 0
+    },
+    "ALG": {
+      "yellow": 2,
+      "red": 0,
+      "yellow_red": 0
+    },
+    "KSA": {
+      "yellow": 5,
+      "red": 0,
+      "yellow_red": 0
+    },
+    "SWE": {
+      "yellow": 5,
+      "red": 0,
+      "yellow_red": 0
+    },
+    "JPN": {
+      "yellow": 4,
+      "red": 0,
+      "yellow_red": 0
+    },
+    "FRA": {
+      "yellow": 6,
+      "red": 0,
+      "yellow_red": 0
+    },
+    "PAN": {
+      "yellow": 3,
+      "red": 0,
+      "yellow_red": 0
+    },
+    "GER": {
+      "yellow": 2,
+      "red": 0,
+      "yellow_red": 0
+    },
     "JOR": {
       "yellow": 4,
       "red": 0,
@@ -148,38 +188,13 @@
       "red": 0,
       "yellow_red": 0
     },
-    "SWE": {
-      "yellow": 5,
-      "red": 0,
-      "yellow_red": 0
-    },
     "CIV": {
       "yellow": 4,
       "red": 0,
       "yellow_red": 0
     },
     "AUS": {
-      "yellow": 5,
-      "red": 0,
-      "yellow_red": 0
-    },
-    "FRA": {
-      "yellow": 6,
-      "red": 0,
-      "yellow_red": 0
-    },
-    "KOR": {
       "yellow": 4,
-      "red": 0,
-      "yellow_red": 0
-    },
-    "TUR": {
-      "yellow": 2,
-      "red": 0,
-      "yellow_red": 0
-    },
-    "ESP": {
-      "yellow": 6,
       "red": 0,
       "yellow_red": 0
     },
@@ -194,17 +209,22 @@
       "yellow_red": 0
     },
     "NZL": {
+      "yellow": 3,
+      "red": 0,
+      "yellow_red": 0
+    },
+    "KOR": {
       "yellow": 4,
       "red": 0,
       "yellow_red": 0
     },
-    "KSA": {
-      "yellow": 6,
+    "TUR": {
+      "yellow": 2,
       "red": 0,
       "yellow_red": 0
     },
-    "ALG": {
-      "yellow": 3,
+    "ESP": {
+      "yellow": 5,
       "red": 0,
       "yellow_red": 0
     },
@@ -218,28 +238,8 @@
       "red": 0,
       "yellow_red": 0
     },
-    "JPN": {
-      "yellow": 4,
-      "red": 0,
-      "yellow_red": 0
-    },
-    "PAN": {
-      "yellow": 3,
-      "red": 0,
-      "yellow_red": 0
-    },
-    "SEN": {
-      "yellow": 3,
-      "red": 0,
-      "yellow_red": 0
-    },
     "TUN": {
       "yellow": 1,
-      "red": 0,
-      "yellow_red": 0
-    },
-    "GER": {
-      "yellow": 3,
       "red": 0,
       "yellow_red": 0
     }

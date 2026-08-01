@@ -78,6 +78,11 @@
       "red": 0,
       "yellow_red": 0
     },
+    "POR": {
+      "yellow": 7,
+      "red": 0,
+      "yellow_red": 0
+    },
     "ARG": {
       "yellow": 13,
       "red": 0,
@@ -85,11 +90,6 @@
     },
     "GHA": {
       "yellow": 6,
-      "red": 0,
-      "yellow_red": 0
-    },
-    "POR": {
-      "yellow": 7,
       "red": 0,
       "yellow_red": 0
     },
@@ -103,6 +103,11 @@
       "red": 0,
       "yellow_red": 0
     },
+    "CPV": {
+      "yellow": 5,
+      "red": 0,
+      "yellow_red": 0
+    },
     "BRA": {
       "yellow": 7,
       "red": 0,
@@ -110,11 +115,6 @@
     },
     "UZB": {
       "yellow": 4,
-      "red": 0,
-      "yellow_red": 0
-    },
-    "CPV": {
-      "yellow": 5,
       "red": 0,
       "yellow_red": 0
     },
@@ -133,8 +133,13 @@
       "red": 0,
       "yellow_red": 0
     },
+    "ALG": {
+      "yellow": 2,
+      "red": 0,
+      "yellow_red": 0
+    },
     "KSA": {
-      "yellow": 5,
+      "yellow": 6,
       "red": 0,
       "yellow_red": 0
     },
@@ -145,11 +150,6 @@
     },
     "SEN": {
       "yellow": 3,
-      "red": 0,
-      "yellow_red": 0
-    },
-    "ALG": {
-      "yellow": 2,
       "red": 0,
       "yellow_red": 0
     },
@@ -199,7 +199,7 @@
       "yellow_red": 0
     },
     "ESP": {
-      "yellow": 6,
+      "yellow": 5,
       "red": 0,
       "yellow_red": 0
     },
@@ -228,12 +228,12 @@
       "red": 0,
       "yellow_red": 0
     },
-    "NED": {
+    "NOR": {
       "yellow": 3,
       "red": 0,
       "yellow_red": 0
     },
-    "NOR": {
+    "NED": {
       "yellow": 3,
       "red": 0,
       "yellow_red": 0

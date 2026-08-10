@@ -18,11 +18,6 @@
       "red": 1,
       "yellow_red": 0
     },
-    "RSA": {
-      "yellow": 5,
-      "red": 2,
-      "yellow_red": 0
-    },
     "ECU": {
       "yellow": 8,
       "red": 1,
@@ -31,6 +26,11 @@
     "URU": {
       "yellow": 4,
       "red": 1,
+      "yellow_red": 0
+    },
+    "RSA": {
+      "yellow": 5,
+      "red": 2,
       "yellow_red": 0
     },
     "IRQ": {
@@ -54,7 +54,7 @@
       "yellow_red": 0
     },
     "BEL": {
-      "yellow": 6,
+      "yellow": 5,
       "red": 1,
       "yellow_red": 0
     },
@@ -64,12 +64,12 @@
       "yellow_red": 0
     },
     "SUI": {
-      "yellow": 7,
+      "yellow": 6,
       "red": 0,
       "yellow_red": 1
     },
     "CRO": {
-      "yellow": 3,
+      "yellow": 4,
       "red": 0,
       "yellow_red": 0
     },
@@ -84,7 +84,7 @@
       "yellow_red": 0
     },
     "GHA": {
-      "yellow": 5,
+      "yellow": 6,
       "red": 0,
       "yellow_red": 0
     },
@@ -93,13 +93,13 @@
       "red": 0,
       "yellow_red": 0
     },
-    "CAN": {
-      "yellow": 11,
+    "AUT": {
+      "yellow": 5,
       "red": 0,
       "yellow_red": 0
     },
-    "AUT": {
-      "yellow": 5,
+    "CAN": {
+      "yellow": 10,
       "red": 0,
       "yellow_red": 0
     },
@@ -133,11 +133,6 @@
       "red": 0,
       "yellow_red": 0
     },
-    "SWE": {
-      "yellow": 5,
-      "red": 0,
-      "yellow_red": 0
-    },
     "JPN": {
       "yellow": 4,
       "red": 0,
@@ -163,6 +158,11 @@
       "red": 0,
       "yellow_red": 0
     },
+    "SWE": {
+      "yellow": 5,
+      "red": 0,
+      "yellow_red": 0
+    },
     "JOR": {
       "yellow": 4,
       "red": 0,
@@ -174,12 +174,7 @@
       "yellow_red": 0
     },
     "SEN": {
-      "yellow": 2,
-      "red": 0,
-      "yellow_red": 0
-    },
-    "CIV": {
-      "yellow": 4,
+      "yellow": 3,
       "red": 0,
       "yellow_red": 0
     },
@@ -193,8 +188,8 @@
       "red": 0,
       "yellow_red": 0
     },
-    "CZE": {
-      "yellow": 1,
+    "CIV": {
+      "yellow": 4,
       "red": 0,
       "yellow_red": 0
     },
@@ -220,6 +215,11 @@
     },
     "ESP": {
       "yellow": 6,
+      "red": 0,
+      "yellow_red": 0
+    },
+    "CZE": {
+      "yellow": 1,
       "red": 0,
       "yellow_red": 0
     },
